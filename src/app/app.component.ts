@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'hopital';
+  isSideNavOpened = true;
+
+  toogleSideNav() {
+    this.isSideNavOpened = !this.isSideNavOpened;
+  }
 }

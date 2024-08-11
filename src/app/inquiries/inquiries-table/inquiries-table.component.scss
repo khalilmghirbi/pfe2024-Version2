@@ -1,0 +1,15 @@
+/* Structure */
+.table-container {
+  overflow: auto;
+  margin: 10px;
+  height: calc(100% - 20px);
+}
+
+:host {
+  height: 100%;
+  width: 100%;
+}
+
+.table-background {
+  background: white;
+}
