@@ -1,0 +1,11 @@
+.filter-form-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.filter-form-container > * {
+    flex-shrink: 1; /* Allow items to shrink */
+    flex-basis: 100px; /* Initial size of the items */
+  }
+

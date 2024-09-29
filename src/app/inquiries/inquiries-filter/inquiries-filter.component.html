@@ -1,0 +1,32 @@
+<span [formGroup]="form" class="filter-form-container">
+  <app-search-input label="Search" [control]="patient"></app-search-input>
+  <app-filter-date-range-input
+    label="Enter a date range"
+    [control]="receptionDate"
+  ></app-filter-date-range-input>
+  <app-filter-select-input
+    label="Medical Procedure"
+    [control]="procedure"
+    [options]="options.procedures"
+  ></app-filter-select-input>
+  <app-filter-select-input
+    label="Status"
+    [control]="status"
+    [options]="options.status"
+  ></app-filter-select-input>
+  <app-filter-select-input
+    label="Clinic"
+    [control]="clinic"
+    [options]="options.clinics"
+  ></app-filter-select-input>
+  <app-filter-select-input
+    label="CaseManagers"
+    [control]="caseManager"
+    [options]="options.caseManagers"
+  ></app-filter-select-input>
+  <app-filter-select-input
+    label="Country"
+    [control]="country"
+    [options]="options.countries"
+  ></app-filter-select-input>
+</span>

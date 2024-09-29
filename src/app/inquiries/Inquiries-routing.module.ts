@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { InquiriesTableComponent } from './inquiries-table/inquiries-table.component';
+import { InquiriesComponent } from './inquiries/inquiries.component';
 
 const routes: Routes = [
-  { path: '',  component: InquiriesTableComponent },
+  { path: '',  component: InquiriesComponent },
 ];
 
 @NgModule({

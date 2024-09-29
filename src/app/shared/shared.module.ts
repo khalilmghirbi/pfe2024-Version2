@@ -13,11 +13,24 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { HttpClientModule } from '@angular/common/http';
 import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
-
+import {MatChipsModule} from '@angular/material/chips';
+import {MatCardModule} from '@angular/material/card';
+import {ReactiveFormsModule} from '@angular/forms';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatSelectModule} from '@angular/material/select';
+import { FilterSelectInputComponent } from './components/filter-select-input/filter-select-input.component';
+import { FilterDateRangeInputComponent } from './components/filter-date-range-input/filter-date-range-input.component';
+import { SearchInputComponent } from './components/search-input/search-input.component';
 
 @NgModule({
   declarations: [
-    SidenavDrawerComponent
+    SidenavDrawerComponent,
+    FilterSelectInputComponent,
+    FilterDateRangeInputComponent,
+    SearchInputComponent
   ],
   imports: [
     CommonModule,
@@ -32,7 +45,15 @@ import {MatSortModule} from '@angular/material/sort';
     MatPaginatorModule,
     HttpClientModule,
     MatTableModule,
-    MatSortModule
+    MatSortModule,
+    MatChipsModule,
+    MatCardModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSelectModule
   ],
   exports: [
     MatToolbarModule,
@@ -47,7 +68,18 @@ import {MatSortModule} from '@angular/material/sort';
     MatPaginatorModule,
     HttpClientModule,
     MatTableModule,
-    MatSortModule
+    MatSortModule,
+    MatChipsModule,
+    MatCardModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSelectModule,
+    FilterSelectInputComponent,
+    FilterDateRangeInputComponent,
+    SearchInputComponent
   ]
 })
 export class SharedModule { }

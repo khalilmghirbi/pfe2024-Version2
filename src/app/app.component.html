@@ -1,9 +1,9 @@
 <app-header (toogleSideNav)="toogleSideNav()"></app-header>
 <mat-sidenav-container class="drawer-container" autosize>
   <mat-sidenav class="sidenav" [opened]="isSideNavOpened" mode="side">
-    <app-sidenav-drawer fxFlex="100"></app-sidenav-drawer>
+    <app-sidenav-drawer></app-sidenav-drawer>
   </mat-sidenav>
-  <div class="full-height" fxFlex="100" fxLayoutAlign="center center">
+  <div class="full-height" fxLayoutAlign="center center">
     <router-outlet></router-outlet>
   </div>
 </mat-sidenav-container>

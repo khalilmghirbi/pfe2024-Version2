@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import {MatSort, SortDirection} from '@angular/material/sort';
+import {MatSort} from '@angular/material/sort';
 import { InquiriesService } from '../services/inquiries.service';
 import { catchError, map, merge, of, startWith, switchMap } from 'rxjs';
 import { Inquiry } from '../models/inquiry';

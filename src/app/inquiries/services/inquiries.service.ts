@@ -14,8 +14,16 @@ export class InquiriesService {
   getInquiries():Observable<Inquiry[]> {
     // this.httpClint.get('http://localhost:3000/inquiries');
     const inquiries:Inquiry[] = [{
-      PatientName: 'John Doe',
-      MedicalProcedure: 'Heart Surgery',
+      PatientName: 'Amine Mghirbi',
+      MedicalProcedure: 'Brain Surgery',
+      ReceptionDate: new Date(),
+      AnswerDate: new Date(),
+      CoordinatorName: 'Jane Doe',
+      CaseManagerName: 'John Doe',
+      Status: InqueryStatus.Pending
+    },{
+      PatientName: 'Khalil Mghirbi',
+      MedicalProcedure: 'brain Surgery',
       ReceptionDate: new Date(),
       AnswerDate: new Date(),
       CoordinatorName: 'Jane Doe',
