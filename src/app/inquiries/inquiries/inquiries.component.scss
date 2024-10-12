@@ -1,4 +1,6 @@
-:host {
-    height: 100%;
-    width: 100%;
-  }
+.inquiries-container{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}

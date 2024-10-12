@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { KpiStatus } from '../enums/kpi-status';
 
 @Component({
   selector: 'app-inquiries-stat-card',
@@ -8,6 +9,7 @@ import { Component, Input } from '@angular/core';
 export class InquiriesStatCardComponent {
 
   @Input() title: string = '';
-  @Input() status: string = '';
+  @Input() value: string | number = '';
+  @Input() status!: KpiStatus;
 
 }

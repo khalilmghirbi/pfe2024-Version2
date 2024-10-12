@@ -1,0 +1,58 @@
+.filter-container{
+    display: flex;
+}
+
+.filter-container :first-child{
+    flex: 1;
+}
+
+.filter-container > button{
+    height : 56px;
+    margin-left: 5px;
+}
+
+.small-icon{
+    width: 10px;
+}
+
+.cards-container{
+    display: flex;
+    justify-content: start;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.status{
+    padding: 5px;
+    border-radius: 2px;
+    width: max-content;
+}
+
+.flex-column{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.flex-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.card{
+    margin: 5px;
+    min-width: 200px;
+}
+
+.card-content{
+    padding: 10px;
+}
+
+.label{
+    font-weight: 500;
+}
+
+.card-content * {
+    padding: 1%;
+}

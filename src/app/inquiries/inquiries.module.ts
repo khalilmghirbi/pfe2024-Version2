@@ -7,6 +7,7 @@ import { InquiriesComponent } from './inquiries/inquiries.component';
 import { InquiriesFilterComponent } from './inquiries-filter/inquiries-filter.component';
 import { InquiriesStatsComponent } from './inquiries-stats/inquiries-stats.component';
 import { InquiriesStatCardComponent } from './inquiries-stat-card/inquiries-stat-card.component';
+import { InquiriesCardsComponent } from './inquiries-cards/inquiries-cards.component';
 
 
 
@@ -16,7 +17,8 @@ import { InquiriesStatCardComponent } from './inquiries-stat-card/inquiries-stat
     InquiriesComponent,
     InquiriesFilterComponent,
     InquiriesStatsComponent,
-    InquiriesStatCardComponent
+    InquiriesStatCardComponent,
+    InquiriesCardsComponent
   ],
   imports: [
     CommonModule,

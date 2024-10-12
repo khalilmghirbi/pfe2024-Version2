@@ -1,8 +1,12 @@
-<mat-card appearance="outlined" class="card-stats">
-    <mat-card-header>
-      <mat-card-title>{{title}}</mat-card-title>
-    </mat-card-header>
-    <mat-card-content fxLayout="row" fxLayoutAlign="center center">
-      <span class="status-fied">{{status}}</span>
-    </mat-card-content>
-</mat-card>
+<div appearance="outlined" class="card-stats">
+  <div>
+      <span class="title">{{title}}</span>
+      <span class="value">{{value}}</span>
+  </div>
+    <span class="status" 
+    [ngClass]="{
+      'warn-bg': status === 'warning',
+      'danger-bg': status === 'danger',
+      'success-bg': status === 'success'
+  }">{{status}}</span>
+</div>

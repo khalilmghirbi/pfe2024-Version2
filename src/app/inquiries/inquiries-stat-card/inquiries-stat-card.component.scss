@@ -1,12 +1,31 @@
-mat-card-title {
-  font-size: 14px !important;
-}
-
-.status-fied {
-  margin: 5px;
-  font-weight: 700;
-}
-
 .card-stats{
-    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+
+.card-stats .title{
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #333;
+    padding: 5px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.card-stats .value{
+  font-weight: 500;
+  color: #333;
+  padding: 5px;
+  background-color: whitesmoke;
+  border-radius: 20%;
+}
+
+
+.card-stats .status{
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
 }

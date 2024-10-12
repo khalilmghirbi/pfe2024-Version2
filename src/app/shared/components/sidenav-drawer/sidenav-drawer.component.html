@@ -1,44 +1,62 @@
-<div fxLayout="column">
-    <div fxFlex="80" fxLayout="column" fxLayoutAlign="start start" fxFlexOffset="5" class="tools">
-      <button mat-button
-              color="primary"
-              fxLayoutAlign="center"
-              id="serversHandler"
-              (click)="navigate('inquiries')">
-        <mat-icon>move_to_inbox</mat-icon>
-        Inquiries
-      </button>
-      <button mat-button color="primary" fxFlexOffset="20" fxLayoutAlign="center"
-              id="alertsHandler"
-              (click)="navigate('messages')">
-        <mat-icon>mail</mat-icon>
-        Messages
-      </button>
-      <button mat-button color="primary" fxFlexOffset="20" fxLayoutAlign="center"
-          id="commandsHandler"
-          (click)="navigate('reviews')">
-        <mat-icon>rate_review</mat-icon>
-        Reviews
-      </button>
-      <button mat-button color="primary" fxFlexOffset="20" fxLayoutAlign="center"
-        id="latenciesHandler"
-        (click)="navigate('statistics')">
-        <mat-icon>query_stats</mat-icon>
-        Statistics
-      </button>
-      <button mat-button color="primary" fxFlexOffset="20" fxLayoutAlign="center"
-              id="reportsHandler"
-              (click)="navigate('users')">
-        <mat-icon>person</mat-icon>
-        Users
-      </button>
-      <button mat-button color="primary" fxFlexOffset="20" fxLayoutAlign="center"
-      id="reportsHandler"
-      (click)="navigate('clinics')">
-        <mat-icon>local_hospital</mat-icon>
-        Clinics
-      </button>
-    </div>
+<div class="tools">
+  <button
+    mat-button
+    color="primary"
+    fxLayoutAlign="center"
+    id="serversHandler"
+    (click)="navigate('inquiries')"
+  >
+    <mat-icon>move_to_inbox</mat-icon>
+    Inquiries
+  </button>
+  <button
+    mat-button
+    color="primary"
+    fxLayoutAlign="center"
+    id="alertsHandler"
+    (click)="navigate('messages')"
+  >
+    <mat-icon>mail</mat-icon>
+    Messages
+  </button>
+  <button
+    mat-button
+    color="primary"
+    fxLayoutAlign="center"
+    id="commandsHandler"
+    (click)="navigate('reviews')"
+  >
+    <mat-icon>rate_review</mat-icon>
+    Reviews
+  </button>
+  <button
+    mat-button
+    color="primary"
+    fxLayoutAlign="center"
+    id="latenciesHandler"
+    (click)="navigate('statistics')"
+  >
+    <mat-icon>query_stats</mat-icon>
+    Statistics
+  </button>
+  <button
+    mat-button
+    color="primary"
+    fxLayoutAlign="center"
+    id="reportsHandler"
+    (click)="navigate('users')"
+  >
+    <mat-icon>person</mat-icon>
+    Users
+  </button>
+  <button
+    mat-button
+    color="primary"
+    fxLayoutAlign="center"
+    id="reportsHandler"
+    (click)="navigate('clinics')"
+  >
+    <mat-icon>local_hospital</mat-icon>
+    Clinics
+  </button>
 </div>
-  
-  

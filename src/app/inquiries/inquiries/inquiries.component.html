@@ -1,5 +1,4 @@
-<span fxLayout="column" fxFlex="100">
-    <app-inquiries-stats fxFlex="20"></app-inquiries-stats>
-    <app-inquiries-filter fxFlex="10"></app-inquiries-filter>
-    <app-inquiries-table fxFlex="70"></app-inquiries-table>
-</span>
+<div class="inquiries-container full-width">
+    <app-inquiries-stats [kpi]="kpis$ | async"></app-inquiries-stats>
+    <app-inquiries-cards></app-inquiries-cards>
+</div>

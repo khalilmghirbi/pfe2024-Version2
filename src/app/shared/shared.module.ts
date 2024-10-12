@@ -4,7 +4,6 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import { SidenavDrawerComponent } from './components/sidenav-drawer/sidenav-drawer.component';
@@ -24,6 +23,8 @@ import {MatSelectModule} from '@angular/material/select';
 import { FilterSelectInputComponent } from './components/filter-select-input/filter-select-input.component';
 import { FilterDateRangeInputComponent } from './components/filter-date-range-input/filter-date-range-input.component';
 import { SearchInputComponent } from './components/search-input/search-input.component';
+import {MatBadgeModule} from '@angular/material/badge';
+import {LayoutModule} from '@angular/cdk/layout';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,6 @@ import { SearchInputComponent } from './components/search-input/search-input.com
     MatIconModule,
     MatButtonModule,
     MatMenuModule,
-    FlexLayoutModule,
     MatSidenavModule,
     MatListModule,
     MatProgressSpinnerModule,
@@ -53,14 +53,15 @@ import { SearchInputComponent } from './components/search-input/search-input.com
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatSelectModule
+    MatSelectModule,
+    MatBadgeModule,
+    LayoutModule
   ],
   exports: [
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
     MatMenuModule,
-    FlexLayoutModule,
     MatSidenavModule,
     MatListModule,
     SidenavDrawerComponent,
@@ -79,7 +80,9 @@ import { SearchInputComponent } from './components/search-input/search-input.com
     MatSelectModule,
     FilterSelectInputComponent,
     FilterDateRangeInputComponent,
-    SearchInputComponent
+    SearchInputComponent,
+    MatBadgeModule,
+    LayoutModule
   ]
 })
 export class SharedModule { }
