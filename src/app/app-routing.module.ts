@@ -10,6 +10,26 @@ const routes: Routes = [
   {
     path: 'inquiries',
     loadChildren: () => import('./inquiries/inquiries.module').then(m => m.InquiriesModule)
+  },
+  {
+    path: 'messages',
+    loadChildren: () => import('./messages/messages.module').then(m => m.MessagesModule)
+  },
+  {
+    path: 'reviews',
+    loadChildren: () => import('./reviews/reviews.module').then(m => m.ReviewsModule)
+  },
+  {
+    path: 'statistics',
+    loadChildren: () => import('./statistics/statistics.module').then(m => m.StatisticsModule)
+  },
+  {
+    path: 'users',
+    loadChildren: () => import('./users/users.module').then(m => m.UsersModule)
+  },
+  {
+    path: 'clinics',
+    loadChildren: () => import('./clinics/clinics.module').then(m => m.ClinicsModule)
   }
 ];
 

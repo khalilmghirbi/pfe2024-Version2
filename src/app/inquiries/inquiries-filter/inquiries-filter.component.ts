@@ -1,69 +1,88 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  map,
+  Observable,
+  Subscription,
+} from 'rxjs';
+import { ResponsiveService } from 'src/app/shared/services/responsive.service';
+import { Breakpoints } from '../models/kpi';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { AdvancedFilterDialogComponent } from '../advanced-filter-dialog/advanced-filter-dialog.component';
+import { Filter } from '../models/filter';
 
 @Component({
   selector: 'app-inquiries-filter',
   templateUrl: './inquiries-filter.component.html',
-  styleUrls: ['./inquiries-filter.component.scss']
+  styleUrls: ['./inquiries-filter.component.scss'],
 })
-export class InquiriesFilterComponent implements OnInit {
+export class InquiriesFilterComponent implements OnInit, OnDestroy {
+  showLabel$!: Observable<boolean>;
+  searchForm!: FormGroup;
+  subscription!: Subscription;
 
-  constructor(private formbuilder: FormBuilder) { }
-
-  form!:FormGroup;
-  dateRange!: FormGroup;
-  options = {
-    procedures: ['Brain', 'Heart', 'Spain'],
-    status: ['Good', 'Bad', 'Ugly'],
-    clinics: ['Clinique les Jasmins'],
-    caseManagers: ['Amine', 'Mohamed', 'Ali'],
-    countries: ['France', 'Tunis', 'Suisse']  
-  }
-
-  get procedure():FormControl<string> {
-    return this.form.get('procedure') as FormControl<string>;
-  }
-
-  get patient():FormControl<string> {
-    return this.form.get('patient') as FormControl<string>;
-  }
-
-  get status():FormControl<string> {
-    return this.form.get('status') as FormControl<string>;
-  }
-
-  get clinic():FormControl<string> {
-    return this.form.get('clinic') as FormControl<string>;
-  }
-
-  get caseManager():FormControl<string> {
-    return this.form.get('caseManager') as FormControl<string>;
-  }
-
-  get country():FormControl<string> {
-    return this.form.get('country') as FormControl<string>;
-  }
-
-  get receptionDate():FormGroup {
-    return this.form.get('receptionDate') as FormGroup;
-  }
-
-  ngOnInit(): void {
-    this.form = this.formbuilder.group({
-      patient: [''],
-      receptionDate: this.formbuilder.group({
-        from: [''],
-        to: ['']
-      }),
-      procedure: [''],
-      status: [''],
-      clinic: [''],
-      caseManager: [''],
-      country: ['']
+  @Output() search = new EventEmitter<string>();
+  @Output() advancedFilter = new EventEmitter<Filter>();
+  /**
+   *
+   */
+  constructor(
+    private formBuilder: FormBuilder,
+    private responsiveService: ResponsiveService,
+    public dialog: MatDialog,
+  ) {
+    this.showLabel$ = this.responsiveService.currentBreakpoint.pipe(
+      map(
+        (breakpoint) =>
+          breakpoint !== Breakpoints.Small && breakpoint !== Breakpoints.XSmall
+      )
+    );
+    this.searchForm = this.formBuilder.group({
+      search: [''],
     });
   }
-    
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+  ngOnInit(): void {
+    this.subscription = this.SearchControl.valueChanges
+      .pipe(debounceTime(100), distinctUntilChanged())
+      .subscribe((value) => {
+        this.search.emit(value);
+      });
+  }
 
+  public get SearchControl(): FormControl {
+    return this.searchForm.get('search') as FormControl;
+  }
 
+  showAdvancedFilter() {
+    const dialogConfig = {
+      minWidth: '300px', // Set minimum width
+      width: '50vw', // Set width to 80% of the viewport width
+      maxWidth: '600px', // Set maximum width
+    };
+    const dialogRef = this.dialog.open(
+      AdvancedFilterDialogComponent,
+      dialogConfig
+    );
+    this.subscription.add(
+      dialogRef.afterClosed().subscribe((filter: Filter) => {
+        localStorage.setItem('filter', JSON.stringify(filter));
+        this.advancedFilter.emit(filter);
+      })
+    );
+  }
 
+  reset() {
+    this.searchForm.reset();
+  }
 }

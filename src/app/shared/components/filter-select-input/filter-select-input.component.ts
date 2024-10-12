@@ -7,7 +7,7 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./filter-select-input.component.scss']
 })
 export class FilterSelectInputComponent {
-  @Input() control!: FormControl<string>;
+  @Input() control!: FormControl<string[]>;
   @Input() options!: string[];
   @Input() label!: string;
 }

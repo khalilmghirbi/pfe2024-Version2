@@ -1,18 +1,5 @@
 <div class="container">
-  <div class="filter-container">
-    <mat-form-field appearance="outline">
-      <mat-icon class="small-icon" matPrefix>search</mat-icon>
-      <input matInput type="text" [formControl]="SearchControl" />
-    </mat-form-field>
-    <button mat-stroked-button color="primary">
-      <mat-icon>filter_alt</mat-icon>
-      <span *ngIf="showLabel$ | async">Filter</span>
-    </button>
-    <button mat-stroked-button color="primary">
-      <mat-icon>add</mat-icon>
-      <span *ngIf="showLabel$ | async">Add Appointment</span>
-    </button>
-  </div>
+  <app-inquiries-filter (search)="handleSearch($event)" (advancedFilter)="handleAdvancedFilter($event)"></app-inquiries-filter>
   <div class="cards-container">
     <mat-card class="card" *ngFor="let inquiry of inquiries$ | async">
       <mat-card-header>

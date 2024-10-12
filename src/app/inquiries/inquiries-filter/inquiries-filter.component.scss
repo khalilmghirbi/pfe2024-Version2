@@ -1,11 +1,17 @@
-.filter-form-container{
+.filter-container{
     display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
 }
 
-.filter-form-container > * {
-    flex-shrink: 1; /* Allow items to shrink */
-    flex-basis: 100px; /* Initial size of the items */
-  }
+.filter-container :first-child{
+    flex: 1;
+}
 
+.filter-container > button{
+    height : 56px;
+    margin-left: 5px;
+}
+
+
+.small-icon{
+    width: 10px;
+}

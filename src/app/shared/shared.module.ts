@@ -25,6 +25,8 @@ import { FilterDateRangeInputComponent } from './components/filter-date-range-in
 import { SearchInputComponent } from './components/search-input/search-input.component';
 import {MatBadgeModule} from '@angular/material/badge';
 import {LayoutModule} from '@angular/cdk/layout';
+import {RouterModule} from '@angular/router';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -55,7 +57,9 @@ import {LayoutModule} from '@angular/cdk/layout';
     MatNativeDateModule,
     MatSelectModule,
     MatBadgeModule,
-    LayoutModule
+    LayoutModule,
+    RouterModule,
+    MatDialogModule
   ],
   exports: [
     MatToolbarModule,
@@ -82,7 +86,9 @@ import {LayoutModule} from '@angular/cdk/layout';
     FilterDateRangeInputComponent,
     SearchInputComponent,
     MatBadgeModule,
-    LayoutModule
+    LayoutModule,
+    RouterModule,
+    MatDialogModule
   ]
 })
 export class SharedModule { }

@@ -7,5 +7,7 @@ export interface Inquiry {
     AnswerDate: Date;
     CoordinatorName: string;
     CaseManagerName: string;
+    Clinic: string;
+    Country: string;
     Status: InqueryStatus;
 }
