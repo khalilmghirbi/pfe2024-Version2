@@ -75,7 +75,7 @@ export class InquiriesService {
   getInquiries(): Observable<Inquiry[]> {
     // this.httpClint.get('http://localhost:3000/inquiries');
 
-    const inquiries: Inquiry[] = Array.from({ length: 7 }, () => ({
+    const inquiries: Inquiry[] = Array.from({ length: 15 }, () => ({
       PatientName: this.getRandomItem(this.patientNames),
       MedicalProcedure: this.getRandomItem(this.medicalProcedures),
       ReceptionDate: new Date(),

@@ -4,6 +4,7 @@ import { InquiriesService } from '../services/inquiries.service';
 import { Inquiry } from '../models/inquiry';
 import { InqueryStatus } from '../enums/inquery-status';
 import { Filter } from '../models/filter';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-inquiries-cards',
@@ -93,5 +94,9 @@ export class InquiriesCardsComponent {
 
   private ArrayFilter<T>(item: T, filter: T[] | undefined): boolean {
     return !filter || filter.length === 0 || filter.includes(item);
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    console.log(event);
   }
 }

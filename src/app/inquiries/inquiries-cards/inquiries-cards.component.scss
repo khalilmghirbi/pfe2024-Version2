@@ -26,6 +26,7 @@
 .card {
   margin: 5px;
   min-width: 200px;
+  cursor: pointer;
 }
 
 .card-content {
@@ -38,4 +39,9 @@
 
 .card-content * {
   padding: 1%;
+}
+
+.menu-icon  {
+  padding-top: 16px;
+  padding-right: 5px;
 }

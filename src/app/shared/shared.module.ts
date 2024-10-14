@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
-import {MatMenuModule} from '@angular/material/menu';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import { SidenavDrawerComponent } from './components/sidenav-drawer/sidenav-drawer.component';
@@ -27,6 +26,8 @@ import {MatBadgeModule} from '@angular/material/badge';
 import {LayoutModule} from '@angular/cdk/layout';
 import {RouterModule} from '@angular/router';
 import {MatDialogModule} from '@angular/material/dialog';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatBadgeModule,
     LayoutModule,
     RouterModule,
-    MatDialogModule
+    MatDialogModule,
+    DragDropModule
   ],
   exports: [
     MatToolbarModule,
@@ -88,7 +90,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatBadgeModule,
     LayoutModule,
     RouterModule,
-    MatDialogModule
+    MatDialogModule,
+    DragDropModule
   ]
 })
 export class SharedModule { }
