@@ -24,7 +24,7 @@
             <mat-icon>summarize</mat-icon>
             <span>Quatations</span>
           </button>
-          <button mat-menu-item>
+          <button mat-menu-item (click)="displayInfo(inquiry)">
             <mat-icon>info</mat-icon>
             <span>Info</span>
           </button>
@@ -47,7 +47,7 @@
             inquiry.Status === status.InProgress ||
             inquiry.Status === status.Pending,
           'success-bg': inquiry.Status === status.Closed,
-          'danger-bg': inquiry.Status === status.Rejected
+          'critical-bg': inquiry.Status === status.Rejected
         }">{{ inquiry.Status }}</span>
         <span class="flex-row">
           <span class="flex-column">

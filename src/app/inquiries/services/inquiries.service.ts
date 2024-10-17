@@ -64,6 +64,11 @@ export class InquiriesService {
     'Mountain View Clinic',
   ];
 
+  sex: string[] = [
+    'Male',
+    'Female'
+  ];
+
   countries: string[] = [
     'United States',
     'Canada',
@@ -74,7 +79,6 @@ export class InquiriesService {
 
   getInquiries(): Observable<Inquiry[]> {
     // this.httpClint.get('http://localhost:3000/inquiries');
-
     const inquiries: Inquiry[] = Array.from({ length: 15 }, () => ({
       PatientName: this.getRandomItem(this.patientNames),
       MedicalProcedure: this.getRandomItem(this.medicalProcedures),
@@ -85,6 +89,11 @@ export class InquiriesService {
       Status: this.getRandomItem(this.statuses),
       Country: this.getRandomItem(this.countries),
       Clinic: this.getRandomItem(this.clinics),
+      Age: Math.floor(Math.random() * 100), // Random number between 0 and 100
+      Sex: this.getRandomItem(this.sex),
+      DesiredCity: 'New York',
+      Smoker: Math.random() < 0.5, // Random boolean
+      NatibeLanguage: 'English'
     }));
 
     return of(inquiries).pipe(delay(1000));

@@ -41,7 +41,7 @@ export class InquiriesStatsComponent {
 
   private getRateStatus(rate: number, succesLimit:number, warnLimit:number): KpiStatus {
     if (rate < succesLimit) {
-      return KpiStatus.Danger;
+      return KpiStatus.Critical;
     } else if (rate < warnLimit) {
       return KpiStatus.Warning;
     } else {

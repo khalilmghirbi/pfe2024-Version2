@@ -1,0 +1,22 @@
+.infos-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.infos-item{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.label{
+    font-weight: 600;
+}
+
+.highlight{
+    color: #3f51b5;
+    font-weight: 600;
+    text-transform: uppercase;
+}

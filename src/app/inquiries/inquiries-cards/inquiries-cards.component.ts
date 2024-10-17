@@ -5,6 +5,9 @@ import { Inquiry } from '../models/inquiry';
 import { InqueryStatus } from '../enums/inquery-status';
 import { Filter } from '../models/filter';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { MatDialog } from '@angular/material/dialog';
+import { InfoDialogComponent } from '../info-dialog/info-dialog.component';
+import { InfoItem } from '../models/info-item';
 
 @Component({
   selector: 'app-inquiries-cards',
@@ -15,7 +18,10 @@ export class InquiriesCardsComponent {
   filters: BehaviorSubject<Filter> = new BehaviorSubject<Filter>({});
   inquiries$!: Observable<Inquiry[]>;
   status = InqueryStatus;
-  constructor(private inquiriesService: InquiriesService) {
+  constructor(
+    private inquiriesService: InquiriesService,
+    public dialog: MatDialog
+  ) {
     this.inquiries$ = combineLatest([
       this.inquiriesService.getInquiries(),
       this.filters$,
@@ -98,5 +104,51 @@ export class InquiriesCardsComponent {
 
   drop(event: CdkDragDrop<string[]>) {
     console.log(event);
+  }
+
+  displayInfo(inquiry: Inquiry) {
+    const dialogConfig = {
+      minWidth: '300px', // Set minimum width
+      width: '50vw', // Set width to 80% of the viewport width
+      maxWidth: '600px', // Set maximum width
+      data: this.ToDialoginfo(inquiry),
+    };
+    this.dialog.open(InfoDialogComponent, dialogConfig);
+  }
+
+  private ToDialoginfo(inquiry: Inquiry): { title: string; content: InfoItem[] } {
+    return {
+      title: "Inquiry Information",
+      content: [
+        { title: 'Patient Name', value: inquiry.PatientName },
+        { title: 'Medical Procedure', value: inquiry.MedicalProcedure },
+        { title: 'Reception Date', value: inquiry.ReceptionDate.toDateString() },
+        { title: 'Answer Date', value: inquiry.AnswerDate.toDateString() },
+        { title: 'Coordinator Name', value: inquiry.CoordinatorName },
+        { title: 'Case Manager Name', value: inquiry.CaseManagerName },
+        { title: 'Clinic', value: inquiry.Clinic },
+        { title: 'Country', value: inquiry.Country },
+        { title: 'Country', value: inquiry.Country },
+        { title: 'Age', value: inquiry.Age!.toString() },
+        { title: 'Sex', value: inquiry.Sex!.toString() },
+        { title: 'City', value: inquiry.DesiredCity!.toString() },
+        { title: 'Smoker', value: inquiry.Smoker!.toString() },
+        { title: 'NativeLanguage', value: inquiry.NatibeLanguage!.toString() },
+        { title: 'Status', value: inquiry.Status, highlighted: true, Style: this.getStatusClass(inquiry) },
+      ],
+    }
+  }
+
+  getStatusClass(inquiry: Inquiry): string {
+    if (inquiry.Status === this.status.New) {
+      return 'grey-bg';
+    } else if (inquiry.Status === this.status.InProgress || inquiry.Status === this.status.Pending) {
+      return 'warn-bg';
+    } else if (inquiry.Status === this.status.Closed) {
+      return 'success-bg';
+    } else if (inquiry.Status === this.status.Rejected) {
+      return 'critical-bg';
+    }
+    return '';
   }
 }

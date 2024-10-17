@@ -9,6 +9,7 @@ import { InquiriesStatCardComponent } from './inquiries-stat-card/inquiries-stat
 import { InquiriesCardsComponent } from './inquiries-cards/inquiries-cards.component';
 import { InquiriesFilterComponent } from './inquiries-filter/inquiries-filter.component';
 import { AdvancedFilterDialogComponent } from './advanced-filter-dialog/advanced-filter-dialog.component';
+import { InfoDialogComponent } from './info-dialog/info-dialog.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { AdvancedFilterDialogComponent } from './advanced-filter-dialog/advanced
     InquiriesStatCardComponent,
     InquiriesCardsComponent,
     InquiriesFilterComponent,
-    AdvancedFilterDialogComponent
+    AdvancedFilterDialogComponent,
+    InfoDialogComponent
   ],
   imports: [
     CommonModule,

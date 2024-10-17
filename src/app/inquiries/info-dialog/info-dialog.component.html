@@ -1,0 +1,12 @@
+<div class="dialog-container">
+    <h1 mat-dialog-title>{{data.title}}</h1>
+    <div mat-dialog-content class="infos-container">
+        <div *ngFor="let item of data.content" class="infos-item">
+            <span class="label">{{item.title}}</span>
+            <span [ngClass]="item.highlighted ? item.Style : ''">{{item.value}}</span>
+        </div>
+    </div>
+    <mat-dialog-actions>
+        <button mat-button mat-dialog-close>Close</button>
+    </mat-dialog-actions>
+</div>

@@ -1,6 +1,6 @@
 import { InqueryStatus } from "../enums/inquery-status";
 
-export interface Inquiry {
+export interface Inquiry{
     PatientName: string;
     MedicalProcedure: string;
     ReceptionDate: Date;
@@ -10,4 +10,9 @@ export interface Inquiry {
     Clinic: string;
     Country: string;
     Status: InqueryStatus;
+    Age?: number;
+    Sex?: string;
+    DesiredCity?: string;
+    Smoker?: boolean;
+    NatibeLanguage?: string;
 }
