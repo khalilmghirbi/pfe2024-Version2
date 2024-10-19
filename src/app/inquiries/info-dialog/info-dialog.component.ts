@@ -15,6 +15,5 @@ export class InfoDialogComponent {
     public dialogRef: MatDialogRef<InfoDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { title: string; content: InfoItem[] }
   ) {
-    console.log(data);
   }
 }

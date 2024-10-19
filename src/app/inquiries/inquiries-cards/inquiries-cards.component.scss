@@ -11,18 +11,6 @@
   width: max-content;
 }
 
-.flex-column {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.flex-row {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
 .card {
   margin: 5px;
   min-width: 200px;

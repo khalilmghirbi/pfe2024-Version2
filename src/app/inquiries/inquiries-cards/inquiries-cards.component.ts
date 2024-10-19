@@ -8,6 +8,8 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { MatDialog } from '@angular/material/dialog';
 import { InfoDialogComponent } from '../info-dialog/info-dialog.component';
 import { InfoItem } from '../models/info-item';
+import { Router } from '@angular/router';
+import { AppointementDialogComponent } from '../appointement-dialog/appointement-dialog.component';
 
 @Component({
   selector: 'app-inquiries-cards',
@@ -20,7 +22,8 @@ export class InquiriesCardsComponent {
   status = InqueryStatus;
   constructor(
     private inquiriesService: InquiriesService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public router: Router
   ) {
     this.inquiries$ = combineLatest([
       this.inquiriesService.getInquiries(),
@@ -114,6 +117,16 @@ export class InquiriesCardsComponent {
       data: this.ToDialoginfo(inquiry),
     };
     this.dialog.open(InfoDialogComponent, dialogConfig);
+  }
+
+  dispalyAppointments(inquiry: Inquiry) {
+    const dialogConfig = {
+      minWidth: '300px', // Set minimum width
+      width: '50vw', // Set width to 80% of the viewport width
+      maxWidth: '600px', // Set maximum width
+      data: inquiry.Id,
+    };
+    this.dialog.open(AppointementDialogComponent, dialogConfig);
   }
 
   private ToDialoginfo(inquiry: Inquiry): { title: string; content: InfoItem[] } {

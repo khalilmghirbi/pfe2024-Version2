@@ -1,0 +1,19 @@
+
+.status {
+    padding: 5px;
+    border-radius: 2px;
+    margin: 16px;
+    width: fit-content;
+    height: fit-content;
+}
+
+.custom-card {
+    border: 1px solid lightgray;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    margin: 5px;
+}
+
+mat-card-actions > * {
+    margin: 5px;
+}

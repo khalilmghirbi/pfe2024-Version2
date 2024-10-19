@@ -3,6 +3,7 @@ import { delay, interval, map, Observable, of } from 'rxjs';
 import { Inquiry } from '../models/inquiry';
 import { InqueryStatus } from '../enums/inquery-status';
 import { Kpi } from '../models/kpi';
+import { Appointment } from '../models/appointment';
 
 @Injectable({
   providedIn: 'root',
@@ -64,10 +65,7 @@ export class InquiriesService {
     'Mountain View Clinic',
   ];
 
-  sex: string[] = [
-    'Male',
-    'Female'
-  ];
+  sex: string[] = ['Male', 'Female'];
 
   countries: string[] = [
     'United States',
@@ -80,6 +78,7 @@ export class InquiriesService {
   getInquiries(): Observable<Inquiry[]> {
     // this.httpClint.get('http://localhost:3000/inquiries');
     const inquiries: Inquiry[] = Array.from({ length: 15 }, () => ({
+      Id: Math.floor(Math.random() * 1000).toString(), // Random string
       PatientName: this.getRandomItem(this.patientNames),
       MedicalProcedure: this.getRandomItem(this.medicalProcedures),
       ReceptionDate: new Date(),
@@ -93,10 +92,22 @@ export class InquiriesService {
       Sex: this.getRandomItem(this.sex),
       DesiredCity: 'New York',
       Smoker: Math.random() < 0.5, // Random boolean
-      NatibeLanguage: 'English'
+      NatibeLanguage: 'English',
     }));
 
     return of(inquiries).pipe(delay(1000));
+  }
+
+  getAppointments(id: string): Observable<Appointment[]> {
+    const appointments: Appointment[] = Array.from({ length: 5 }, () => ({
+      hospital: this.getRandomItem(this.clinics),
+      date: new Date(),
+      status: this.getRandomItem(this.statuses),
+      payment: Math.floor(Math.random() * 10000), // Random number between 0 and 10000
+      hotel: this.getRandomItem(this.countries),
+    }));
+
+    return of(appointments).pipe(delay(1000));
   }
 
   getKpis(): Observable<Kpi> {

@@ -16,7 +16,7 @@
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item>
+          <button mat-menu-item (click)="dispalyAppointments(inquiry)">
             <mat-icon>calendar_month</mat-icon>
             <span>Appointments</span>
           </button>

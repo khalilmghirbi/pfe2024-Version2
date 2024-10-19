@@ -28,6 +28,7 @@ import {RouterModule} from '@angular/router';
 import {MatDialogModule} from '@angular/material/dialog';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import {MatMenuModule} from '@angular/material/menu';
     LayoutModule,
     RouterModule,
     MatDialogModule,
-    DragDropModule
+    DragDropModule,
+    MatTabsModule
   ],
   exports: [
     MatToolbarModule,
@@ -91,7 +93,8 @@ import {MatMenuModule} from '@angular/material/menu';
     LayoutModule,
     RouterModule,
     MatDialogModule,
-    DragDropModule
+    DragDropModule,
+    MatTabsModule
   ]
 })
 export class SharedModule { }
