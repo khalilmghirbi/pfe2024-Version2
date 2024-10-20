@@ -1,0 +1,7 @@
+.table-container {
+    overflow: hidden;
+    display: flex;
+    padding: 15px;
+    flex-direction: column;
+    height: calc(100% - 30px);
+}
