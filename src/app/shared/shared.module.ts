@@ -29,13 +29,15 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatTabsModule} from '@angular/material/tabs';
+import { SidenavMenuItemComponent } from './components/sidenav-menu-item/sidenav-menu-item.component';
 
 @NgModule({
   declarations: [
     SidenavDrawerComponent,
     FilterSelectInputComponent,
     FilterDateRangeInputComponent,
-    SearchInputComponent
+    SearchInputComponent,
+    SidenavMenuItemComponent
   ],
   imports: [
     CommonModule,

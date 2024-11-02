@@ -1,7 +1,3 @@
 <mat-nav-list class="tools">
-  <a *ngFor="let item of navItems" mat-list-item [routerLink]="item.route" routerLinkActive #rla="routerLinkActive"
-    [activated]="rla.isActive">
-    <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
-    <span *ngIf="showLabel$ | async">{{ item.title }}</span>
-  </a>
+  <app-sidenav-menu-item *ngFor="let item of navItems" [navItem]="item" class="full-width"></app-sidenav-menu-item>
 </mat-nav-list>

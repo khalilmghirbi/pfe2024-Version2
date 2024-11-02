@@ -1,15 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NavItem } from '../../models/nav-item';
-import { ResponsiveService } from '../../services/responsive.service';
-import { map, Observable } from 'rxjs';
-import { Breakpoints } from '@angular/cdk/layout';
+import { Observable, Subscription } from 'rxjs';
+import { ClinicService } from 'src/app/clinics/services/clinic.service';
 
 @Component({
   selector: 'app-sidenav-drawer',
   templateUrl: './sidenav-drawer.component.html',
   styleUrls: ['./sidenav-drawer.component.scss'],
 })
-export class SidenavDrawerComponent {
+export class SidenavDrawerComponent implements OnInit, OnDestroy {
+  susbcription!: Subscription;
   navItems: NavItem[] = [
     {
       title: 'Inquiries',
@@ -36,18 +36,31 @@ export class SidenavDrawerComponent {
       icon: 'person',
       route: 'users',
     },
-    {
-      title: 'Clinics',
-      icon: 'local_hospital',
-      route: 'clinics',
-    }
   ];
 
   showLabel$!: Observable<boolean>;
-  constructor(public responsiveService:ResponsiveService) {
-    this.showLabel$ = this.responsiveService.currentBreakpoint.
-    pipe(
-      map(breakpoint => breakpoint !== Breakpoints.Small && breakpoint !== Breakpoints.XSmall)
-    );
+  constructor(
+    private clinicService: ClinicService
+  ) {}
+
+  ngOnDestroy(): void {
+    this.susbcription.unsubscribe();
+  }
+
+  ngOnInit(): void {
+    this.susbcription = this.clinicService.getClinics().subscribe((clinics) => {
+      this.navItems.push({
+        title: 'Clinics',
+        icon: 'local_hospital',
+        route: 'clinics',
+        subItems: clinics.map((clinic) => {
+          return {
+            title: clinic.name,
+            route: 'clinics/' + clinic.id,
+          };
+        }),
+      });
+      console.log(this.navItems);
+    });
   }
 }

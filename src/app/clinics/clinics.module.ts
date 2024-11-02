@@ -8,6 +8,8 @@ import { NotificationsComponent } from './notifications/notifications.component'
 import { CaseManagersComponent } from './case-managers/case-managers.component';
 import { HotelsComponent } from './hotels/hotels.component';
 import { ReviewsComponent } from './reviews/reviews.component';
+import { ClinicComponent } from './clinic/clinic.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -19,11 +21,13 @@ import { ReviewsComponent } from './reviews/reviews.component';
     NotificationsComponent,
     CaseManagersComponent,
     HotelsComponent,
-    ReviewsComponent
+    ReviewsComponent,
+    ClinicComponent
   ],
   imports: [
     CommonModule,
-    ClinicsRoutingModule
+    ClinicsRoutingModule,
+    SharedModule
   ]
 })
 export class ClinicsModule { }
