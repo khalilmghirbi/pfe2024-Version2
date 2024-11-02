@@ -10,6 +10,7 @@ import { HotelsComponent } from './hotels/hotels.component';
 import { ReviewsComponent } from './reviews/reviews.component';
 import { ClinicComponent } from './clinic/clinic.component';
 import { SharedModule } from '../shared/shared.module';
+import { ProfileComponent } from './profile/profile.component';
 
 
 
@@ -22,7 +23,8 @@ import { SharedModule } from '../shared/shared.module';
     CaseManagersComponent,
     HotelsComponent,
     ReviewsComponent,
-    ClinicComponent
+    ClinicComponent,
+    ProfileComponent
   ],
   imports: [
     CommonModule,
