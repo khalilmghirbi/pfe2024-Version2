@@ -11,6 +11,7 @@ import { ReviewsComponent } from './reviews/reviews.component';
 import { ClinicComponent } from './clinic/clinic.component';
 import { SharedModule } from '../shared/shared.module';
 import { ProfileComponent } from './profile/profile.component';
+import { AddProcedureDialogComponent } from './add-procedure-dialog/add-procedure-dialog.component';
 
 
 
@@ -24,7 +25,8 @@ import { ProfileComponent } from './profile/profile.component';
     HotelsComponent,
     ReviewsComponent,
     ClinicComponent,
-    ProfileComponent
+    ProfileComponent,
+    AddProcedureDialogComponent
   ],
   imports: [
     CommonModule,

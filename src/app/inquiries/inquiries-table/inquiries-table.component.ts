@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import { InquiriesService } from '../services/inquiries.service';
@@ -11,7 +11,7 @@ import { Inquiry } from '../models/inquiry';
   templateUrl: './inquiries-table.component.html',
   styleUrls: ['./inquiries-table.component.scss']
 })
-export class InquiriesTableComponent {
+export class InquiriesTableComponent implements AfterViewInit {
   displayedColumns: string[] = ['Patient', 'Medical Procedure', 'Reception Date', 'Answer Date', 'Coordinator' , 'Case Manager', 'Status', 'Actions'];
   data:Inquiry[] = [];
 

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -6,8 +6,9 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './clinic.component.html',
   styleUrls: ['./clinic.component.scss']
 })
-export class ClinicComponent {
+export class ClinicComponent implements OnInit {
   titles = ['profile', 'media', 'treatments', 'doctors', 'notifications', 'hotels', 'reviews'];
+  selectedIndex = 0;
 
   /**
    *
@@ -15,10 +16,15 @@ export class ClinicComponent {
   constructor(private router: Router, private route: ActivatedRoute) {
     
   }
+  ngOnInit(): void {
+    // Get the last segment from the route
+    this.selectedIndex = localStorage.getItem('indexId') ? parseInt(localStorage.getItem('indexId') as string) : 0;
+  }
 
   onTabChange(event: any) {
     const selectedTabIndex = event.index;
     const selectedTitle = this.titles[selectedTabIndex];
+    localStorage.setItem('indexId', selectedTabIndex);
     this.router.navigate([selectedTitle] , { relativeTo: this.route });
   }
 }

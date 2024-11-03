@@ -13,6 +13,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 export class ProfileComponent implements OnInit {
   profile$!: Observable<Profile>;
   formGroup!: FormGroup;
+  services: string[] = [];
   constructor(
     private clinicService: ClinicService,
     private activatedRoute: ActivatedRoute,
@@ -55,6 +56,7 @@ export class ProfileComponent implements OnInit {
       }),
       tap((profile: Profile) => {
         this.formGroup.patchValue(profile);
+        this.services = profile.services;
       })
     );
   }

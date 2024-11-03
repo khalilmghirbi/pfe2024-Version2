@@ -1,4 +1,4 @@
-<mat-card *ngIf="profile$ | async as obj" class="container">
+<mat-card *ngIf="profile$ | async as obj" class="card-container">
     <mat-card-header>
         <mat-card-title-group>
             <mat-card-title>{{obj.name}}</mat-card-title>
@@ -30,6 +30,11 @@
             <mat-label>Phone</mat-label>
             <input type="tel" matInput [formControl]="phoneControl">
         </mat-form-field>
+        <mat-chip-set>
+            <mat-chip class="example-box" *ngFor="let service of services">
+                {{service}}
+            </mat-chip>
+        </mat-chip-set>
     </mat-card-content>
     <mat-card-actions align="end">
         <button color="primary" mat-flat-button>Save</button>

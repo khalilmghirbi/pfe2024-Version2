@@ -1,0 +1,12 @@
+<div class="dialog-container">
+    <h1 mat-dialog-title>Add Procedure</h1>
+    <div mat-dialog-content [formGroup]="formGroup">
+        <mat-form-field appearance="fill" class="full-width" >
+            <mat-label>Procedure Name</mat-label>
+            <input matInput placeholder="Enter procedure name" [formControl]="procedureControl">
+        </mat-form-field>
+    </div>
+    <mat-dialog-actions>
+        <button mat-flat-button color="primary" class="full-width" (click)="onSubmit()">Save</button>
+    </mat-dialog-actions>
+</div>

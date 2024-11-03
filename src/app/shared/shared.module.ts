@@ -30,6 +30,8 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatTabsModule} from '@angular/material/tabs';
 import { SidenavMenuItemComponent } from './components/sidenav-menu-item/sidenav-menu-item.component';
+import { JoinPipe } from './pipes/join.pipe';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { SidenavMenuItemComponent } from './components/sidenav-menu-item/sidenav
     FilterSelectInputComponent,
     FilterDateRangeInputComponent,
     SearchInputComponent,
-    SidenavMenuItemComponent
+    SidenavMenuItemComponent,
+    JoinPipe
   ],
   imports: [
     CommonModule,
@@ -65,7 +68,8 @@ import { SidenavMenuItemComponent } from './components/sidenav-menu-item/sidenav
     RouterModule,
     MatDialogModule,
     DragDropModule,
-    MatTabsModule
+    MatTabsModule,
+    MatProgressBarModule
   ],
   exports: [
     MatToolbarModule,
@@ -96,7 +100,9 @@ import { SidenavMenuItemComponent } from './components/sidenav-menu-item/sidenav
     RouterModule,
     MatDialogModule,
     DragDropModule,
-    MatTabsModule
+    MatTabsModule,
+    JoinPipe,
+    MatProgressBarModule
   ]
 })
 export class SharedModule { }
