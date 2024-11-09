@@ -4,6 +4,7 @@ import { Profile } from '../models/profile';
 import { Media } from '../models/media';
 import { Treatment } from '../models/treatment';
 import { Doctor } from '../models/doctor';
+import { Contact } from '../models/contact';
 
 @Injectable({
   providedIn: 'root',
@@ -42,6 +43,34 @@ export class ClinicService {
     phone: '123-456-7890',
     services: ['General Medicine', 'Pediatrics', 'Dermatology'],
   };
+
+  contacts: Contact[] = [
+    {
+      id: "1",
+      name: "Alice Johnson",
+      email: "alice.johnson@example.com"
+    },
+    {
+      id: "2",
+      name: "Bob Smith",
+      email: "bob.smith@example.com"
+    },
+    {
+      id: "3",
+      name: "Charlie Brown",
+      email: "charlie.brown@example.com"
+    },
+    {
+      id: "4",
+      name: "David Lee",
+      email: "david.lee@example.com"
+    },
+    {
+      id: "5",
+      name: "Eva White",
+      email: "eva.white@example.com"
+    }
+  ];
 
   doctors: Doctor[] = [
     {
@@ -134,6 +163,10 @@ export class ClinicService {
     return of(this.doctors).pipe(delay(100));
   }
 
+  getContracts(id: string): Observable<Contact[]> {
+    return of(this.contacts).pipe(delay(100));
+  }
+
   updateProfile(profile: Profile): Observable<Profile> {
     this.profile = profile;
     return of(profile).pipe(delay(100));
@@ -147,6 +180,11 @@ export class ClinicService {
   addDoctor(id: string, doctor: Doctor): Observable<Doctor[]> {
     this.doctors.push(doctor);
     return this.getDoctors('0');
+  }
+
+  addContact(id: string, contact: Contact): Observable<Contact[]> {
+    this.contacts.push(contact);
+    return this.getContracts('0');
   }
 
   getMedias(id: string): Observable<Media[]> {

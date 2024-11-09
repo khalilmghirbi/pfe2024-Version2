@@ -13,6 +13,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ProfileComponent } from './profile/profile.component';
 import { AddProcedureDialogComponent } from './add-procedure-dialog/add-procedure-dialog.component';
 import { AddDoctorDialogComponent } from './add-doctor-dialog/add-doctor-dialog.component';
+import { AddContactDialogComponent } from './add-contact-dialog/add-contact-dialog.component';
 
 
 
@@ -28,7 +29,8 @@ import { AddDoctorDialogComponent } from './add-doctor-dialog/add-doctor-dialog.
     ClinicComponent,
     ProfileComponent,
     AddProcedureDialogComponent,
-    AddDoctorDialogComponent
+    AddDoctorDialogComponent,
+    AddContactDialogComponent
   ],
   imports: [
     CommonModule,
