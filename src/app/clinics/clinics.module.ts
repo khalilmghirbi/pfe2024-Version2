@@ -15,6 +15,7 @@ import { AddProcedureDialogComponent } from './add-procedure-dialog/add-procedur
 import { AddDoctorDialogComponent } from './add-doctor-dialog/add-doctor-dialog.component';
 import { AddContactDialogComponent } from './add-contact-dialog/add-contact-dialog.component';
 import { AddHotelDialogComponent } from './add-hotel-dialog/add-hotel-dialog.component';
+import { AddCaseManagerDialogComponent } from './add-case-manager-dialog/add-case-manager-dialog.component';
 
 
 
@@ -32,7 +33,8 @@ import { AddHotelDialogComponent } from './add-hotel-dialog/add-hotel-dialog.com
     AddProcedureDialogComponent,
     AddDoctorDialogComponent,
     AddContactDialogComponent,
-    AddHotelDialogComponent
+    AddHotelDialogComponent,
+    AddCaseManagerDialogComponent
   ],
   imports: [
     CommonModule,

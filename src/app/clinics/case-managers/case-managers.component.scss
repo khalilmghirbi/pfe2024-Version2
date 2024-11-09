@@ -1,0 +1,25 @@
+.card-container {
+    margin: 10px;
+  }
+  
+  .item-container {
+    margin-top: 10px;
+    display: flex;
+  }
+  
+  .hotel_name {
+    align-items: start;
+    flex-basis: 40%;
+  }
+
+  .hotel_actions {
+    align-items: end;
+    flex-basis: 10%;
+    display: flex;
+    justify-content: end;
+  }
+
+  .item-container > span {
+    flex-basis: 30%;
+  }
+  

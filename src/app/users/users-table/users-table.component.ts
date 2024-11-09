@@ -39,7 +39,7 @@ export class UsersTableComponent implements OnInit, OnDestroy, AfterViewInit {
 
   constructor(public managerService: ManagerService) {}
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.subscription?.unsubscribe();
   }
 
   ngOnInit() {

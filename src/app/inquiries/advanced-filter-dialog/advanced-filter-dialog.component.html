@@ -16,6 +16,6 @@
     <mat-dialog-actions align="end">
         <button mat-button mat-dialog-close>Cancel</button>
         <button mat-button *ngIf="canResetFilter" (click)="reset()">Reset</button>
-        <button mat-button [mat-dialog-close]="form.value" cdkFocusInitial>Apply</button>
+        <button mat-button [mat-dialog-close]="form.value" color="primary" cdkFocusInitial>Apply</button>
     </mat-dialog-actions>
 </div>

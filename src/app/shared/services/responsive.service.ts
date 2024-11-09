@@ -16,7 +16,7 @@ export class ResponsiveService implements OnDestroy{
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.subscription?.unsubscribe();
   }
 
   get currentBreakpoint(): Observable<string> {

@@ -17,19 +17,9 @@ export class SidenavDrawerComponent implements OnInit, OnDestroy {
       route: 'inquiries',
     },
     {
-      title: 'Messages',
-      icon: 'mail',
-      route: 'messages',
-    },
-    {
       title: 'Reviews',
       icon: 'rate_review',
       route: 'reviews',
-    },
-    {
-      title: 'Statistics',
-      icon: 'query_stats',
-      route: 'statistics',
     },
     {
       title: 'Users',
@@ -44,7 +34,7 @@ export class SidenavDrawerComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnDestroy(): void {
-    this.susbcription.unsubscribe();
+    this.susbcription?.unsubscribe();
   }
 
   ngOnInit(): void {

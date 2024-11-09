@@ -50,7 +50,7 @@ export class InquiriesFilterComponent implements OnInit, OnDestroy {
     });
   }
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.subscription?.unsubscribe();
   }
   ngOnInit(): void {
     this.subscription = this.SearchControl.valueChanges

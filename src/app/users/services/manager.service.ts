@@ -85,12 +85,12 @@ export class ManagerService {
       country: this.getRandomItem(this.countries),
     }));
 
-    return of(users).pipe(delay(1000));
+    return of(users);
   }
 
   removeManager(id: number) {
     console.log('Removing manager with id:', id);
-    return of({}).pipe(delay(1000));
+    return of({});
   }
 
   updateManager(id: number, user: User) {

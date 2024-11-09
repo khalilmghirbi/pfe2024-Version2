@@ -6,11 +6,13 @@ import { Treatment } from '../models/treatment';
 import { Doctor } from '../models/doctor';
 import { Contact } from '../models/contact';
 import { Hotel } from '../models/hotel';
+import { CaseManager } from '../models/case-manager';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ClinicService {
+
   removeDoctor(id: string) {
     console.log("remove")
   }
@@ -126,6 +128,57 @@ export class ClinicService {
     },
   ];
 
+  caseManagers: CaseManager[] = [
+    {
+        id: "1",
+        name: "Emma Johnson",
+        email: "emma.johnson@company.com",
+        country: "United States"
+    },
+    {
+        id: "2",
+        name: "Liam Smith",
+        email: "liam.smith@company.com",
+        country: "Canada"
+    },
+    {
+        id: "3",
+        name: "Sophia Martinez",
+        email: "sophia.martinez@company.com",
+        country: "Mexico"
+    },
+    {
+        id: "4",
+        name: "James Wilson",
+        email: "james.wilson@company.com",
+        country: "United Kingdom"
+    },
+    {
+        id: "5",
+        name: "Olivia Brown",
+        email: "olivia.brown@company.com",
+        country: "Australia"
+    },
+    {
+        id: "6",
+        name: "Benjamin Lee",
+        email: "benjamin.lee@company.com",
+        country: "Singapore"
+    },
+    {
+        id: "7",
+        name: "Charlotte Taylor",
+        email: "charlotte.taylor@company.com",
+        country: "Germany"
+    },
+    {
+        id: "8",
+        name: "Lucas Garcia",
+        email: "lucas.garcia@company.com",
+        country: "Spain"
+    }
+];
+
   treatments: Treatment[] = [
     {
       name: 'General Medicine',
@@ -140,7 +193,7 @@ export class ClinicService {
       capacity: 200,
     },
   ];
-  
+
   hotels: Hotel[] = [
     {
         id: "1",
@@ -226,6 +279,10 @@ export class ClinicService {
     return of(this.contacts).pipe(delay(100));
   }
 
+  getCaseManager(id: string): Observable<CaseManager[]> {
+    return of(this.caseManagers).pipe(delay(100));
+  }
+
   
   getHotels(id: string): Observable<Hotel[]> {
     return of(this.hotels).pipe(delay(100));
@@ -244,6 +301,11 @@ export class ClinicService {
   addDoctor(id: string, doctor: Doctor): Observable<Doctor[]> {
     this.doctors.push(doctor);
     return this.getDoctors('0');
+  }
+
+  addCaseManager(id: string, caseManger: CaseManager) {
+    this.caseManagers.push(caseManger);
+    return this.getCaseManager('0');
   }
 
   addContact(id: string, contact: Contact): Observable<Contact[]> {

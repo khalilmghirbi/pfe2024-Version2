@@ -42,7 +42,7 @@ export class ReviewsTableComponent implements OnInit, OnDestroy, AfterViewInit {
 
   constructor(public reviewService: ReviewService, private dialog: MatDialog) {}
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.subscription?.unsubscribe();
   }
 
   ngOnInit() {

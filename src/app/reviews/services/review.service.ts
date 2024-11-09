@@ -61,17 +61,33 @@ export class ReviewService {
       procedure: this.getRandomItem(this.medicalProcedures),
       hospital: this.getRandomItem(this.clinics),
       caseManger: this.getRandomItem(this.caseManagers),
-      message: 'The staff was very professional and the procedure went smoothly. Highly recommend this clinic!',
+      message: 'The staff was very professional.',
       rate : Math.floor(Math.random() * 5) + 1,
       status: this.getRandomItem(this.statuses)
     }));
 
-    return of(reviews).pipe(delay(1000));
+    return of(reviews);
+  }
+
+  getReviewById(hopitalid: string): Observable<Review[]> {
+    const reviews: Review[] = Array.from({ length: 5 }, () => ({
+      id : Math.floor(Math.random() * 1000) + 1,
+      receptionDate: new Date(),
+      patienName: this.getRandomItem(this.patientNames),
+      procedure: this.getRandomItem(this.medicalProcedures),
+      hospital: this.getRandomItem(this.clinics),
+      caseManger: this.getRandomItem(this.caseManagers),
+      message: 'The staff was very professional.',
+      rate : Math.floor(Math.random() * 5) + 1,
+      status: this.getRandomItem(this.statuses)
+    }));
+
+    return of(reviews);
   }
 
   replyReview(id: Number, reply: string) {
     console.log('Replying to review with id:', id, 'and message:', reply);
-    return of({}).pipe(delay(1000));
+    return of({});
   }
 
   private getRandomItem<T>(array: T[]): T {

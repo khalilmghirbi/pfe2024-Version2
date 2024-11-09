@@ -95,7 +95,7 @@ export class InquiriesService {
       NatibeLanguage: 'English',
     }));
 
-    return of(inquiries).pipe(delay(1000));
+    return of(inquiries);
   }
 
   getAppointments(id: string): Observable<Appointment[]> {
@@ -107,7 +107,7 @@ export class InquiriesService {
       hotel: this.getRandomItem(this.countries),
     }));
 
-    return of(appointments).pipe(delay(1000));
+    return of(appointments);
   }
 
   getKpis(): Observable<Kpi> {
