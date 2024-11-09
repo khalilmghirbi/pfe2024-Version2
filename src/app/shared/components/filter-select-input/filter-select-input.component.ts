@@ -8,6 +8,6 @@ import { FormControl } from '@angular/forms';
 })
 export class FilterSelectInputComponent {
   @Input() control!: FormControl<string[]>;
-  @Input() options!: string[];
+  @Input() options!: string[] | null;
   @Input() label!: string;
 }

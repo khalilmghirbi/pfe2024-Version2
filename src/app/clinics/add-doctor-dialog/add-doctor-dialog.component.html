@@ -1,0 +1,40 @@
+<div class="dialog-container">
+    <h1 mat-dialog-title>Add Procedure</h1>
+    <div mat-dialog-content [formGroup]="formGroup">
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="Enter full name" [formControl]="nameControl">
+        </mat-form-field>
+        <div class="attach-file full-width">
+            <mat-form-field appearance="fill">
+                <mat-label>Photo</mat-label>
+                <input matInput placeholder="load new photo" [formControl]="photoControl">
+            </mat-form-field>
+            <button mat-icon-button color="primary" (click)="fileInput.click()">
+                <label for="file-upload" style="cursor: pointer;">
+                    <input #fileInput type="file" accept="image/*" (change)="setPhotoData($event)" hidden />
+                    <mat-icon>attach_file</mat-icon>
+                </label>
+            </button>
+        </div>
+        <div class="attach-file full-width">
+            <mat-form-field appearance="fill">
+                <mat-label>CV</mat-label>
+                <input matInput placeholder="load cv" [formControl]="cvControl">
+            </mat-form-field>
+            <button mat-icon-button color="primary" (click)="fileInput.click()">
+                <label for="file-upload" style="cursor: pointer;">
+                    <input #fileInput type="file" accept="image/*" (change)="setCvData($event)" hidden />
+                    <mat-icon>attach_file</mat-icon>
+                </label>
+            </button>
+        </div>
+        <app-filter-select-input [control]="specialityControl" [options]="specOptions$ | async"
+            label="Specialities"></app-filter-select-input>
+        <app-filter-select-input [control]="languagesControl" [options]="langOptions$ | async"
+            label="Languages"></app-filter-select-input>
+    </div>
+    <mat-dialog-actions>
+        <button mat-flat-button color="primary" class="full-width" (click)="onSubmit()">Save</button>
+    </mat-dialog-actions>
+</div>

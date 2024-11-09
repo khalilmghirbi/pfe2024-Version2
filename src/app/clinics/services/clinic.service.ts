@@ -3,11 +3,21 @@ import { delay, map, Observable, of } from 'rxjs';
 import { Profile } from '../models/profile';
 import { Media } from '../models/media';
 import { Treatment } from '../models/treatment';
+import { Doctor } from '../models/doctor';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ClinicService {
+  removeDoctor(id: string) {
+    console.log("remove")
+  }
+  getSpecialitites(): Observable<string[]> {
+    return of(this.specialities).pipe(delay(100));
+  }
+  getLangs(): Observable<string[]> {
+    return of(this.languages).pipe(delay(100));
+  }
 
   clinics: string[] = [
     'City Health Clinic',
@@ -15,6 +25,10 @@ export class ClinicService {
     'Lakeside Family Clinic',
     'Mountain View Clinic',
   ];
+
+  languages: string[] = ['English', 'Arabe', 'Frensh'];
+
+  specialities: string[] = ['General Medicine', 'Pediatrics', 'Dermatology'];
 
   profile: Profile = {
     name: 'City Health Clinic',
@@ -28,6 +42,38 @@ export class ClinicService {
     phone: '123-456-7890',
     services: ['General Medicine', 'Pediatrics', 'Dermatology'],
   };
+
+  doctors: Doctor[] = [
+    {
+      id: 'Dr. John Doe',
+      name: 'Dr. John Doe',
+      photo: 'https://example.com/photos/john_doe.jpg',
+      cv: 'https://example.com/cvs/john_doe.pdf',
+      specialities: ['Cardiology', 'Internal Medicine'],
+      languages: ['English', 'Spanish'],
+    },
+    {
+      id: 'Dr. Jane Smith',
+      name: 'Dr. Jane Smith',
+      photo: 'https://example.com/photos/jane_smith.jpg',
+      cv: 'https://example.com/cvs/jane_smith.pdf',
+      specialities: ['Pediatrics', 'Neonatology'],
+      languages: ['English', 'French'],
+    },
+    {
+      id: 'Dr. Emily Johnson',
+      name: 'Dr. Emily Johnson',
+      specialities: ['Dermatology'],
+      languages: ['English'],
+    },
+    {
+      id: 'Dr. Michael Brown',
+      name: 'Dr. Michael Brown',
+      photo: 'https://example.com/photos/michael_brown.jpg',
+      specialities: ['Orthopedics', 'Sports Medicine'],
+      languages: ['English', 'German'],
+    },
+  ];
 
   medias: Media[] = [
     {
@@ -47,7 +93,7 @@ export class ClinicService {
       image:
         'https://media.gettyimages.com/id/1312706413/fr/photo/b%C3%A2timent-moderne-dh%C3%B4pital.jpg?s=612x612&w=gi&k=20&c=uDT_aoo1Tdi_HdKddXUaaB19YVDgwsjP4upK99Vj0gc=',
       language: ['English', 'Spanish'],
-    }
+    },
   ];
 
   treatments: Treatment[] = [
@@ -62,7 +108,7 @@ export class ClinicService {
     {
       name: 'Dermatology',
       capacity: 200,
-    }
+    },
   ];
 
   constructor() {}
@@ -77,13 +123,15 @@ export class ClinicService {
   }
 
   getTreatments(): Observable<Treatment[]> {
-    return of(this.treatments).pipe(
-      delay(100)
-    );
+    return of(this.treatments).pipe(delay(100));
   }
 
   getProfile(id: string): Observable<Profile> {
     return of(this.profile).pipe(delay(100));
+  }
+
+  getDoctors(id: string): Observable<Doctor[]> {
+    return of(this.doctors).pipe(delay(100));
   }
 
   updateProfile(profile: Profile): Observable<Profile> {
@@ -94,6 +142,11 @@ export class ClinicService {
   addProcedure(procedure: Treatment): Observable<Treatment[]> {
     this.treatments.push(procedure);
     return this.getTreatments();
+  }
+
+  addDoctor(id: string, doctor: Doctor): Observable<Doctor[]> {
+    this.doctors.push(doctor);
+    return this.getDoctors('0');
   }
 
   getMedias(id: string): Observable<Media[]> {
