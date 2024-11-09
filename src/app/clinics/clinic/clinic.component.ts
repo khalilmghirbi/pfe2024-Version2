@@ -7,7 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./clinic.component.scss']
 })
 export class ClinicComponent implements OnInit {
-  titles = ['profile', 'media', 'treatments', 'doctors', 'notifications', 'hotels', 'reviews'];
+  titles = ['profile', 'media', 'treatments', 'doctors', 'notifications', 'case-manager', 'hotels', 'reviews'];
   selectedIndex = 0;
 
   /**

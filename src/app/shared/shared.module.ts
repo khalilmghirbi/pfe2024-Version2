@@ -32,6 +32,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { SidenavMenuItemComponent } from './components/sidenav-menu-item/sidenav-menu-item.component';
 import { JoinPipe } from './pipes/join.pipe';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { StarRatingComponent } from './components/star-rating-component/star-rating-component.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     FilterDateRangeInputComponent,
     SearchInputComponent,
     SidenavMenuItemComponent,
-    JoinPipe
+    JoinPipe,
+    StarRatingComponent
   ],
   imports: [
     CommonModule,
@@ -70,7 +72,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     DragDropModule,
     MatTabsModule,
     MatProgressBarModule
-  ],
+    ],
   exports: [
     MatToolbarModule,
     MatIconModule,
@@ -102,7 +104,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     DragDropModule,
     MatTabsModule,
     JoinPipe,
-    MatProgressBarModule
+    MatProgressBarModule,
+    StarRatingComponent
   ]
 })
 export class SharedModule { }

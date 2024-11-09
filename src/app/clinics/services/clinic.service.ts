@@ -5,6 +5,7 @@ import { Media } from '../models/media';
 import { Treatment } from '../models/treatment';
 import { Doctor } from '../models/doctor';
 import { Contact } from '../models/contact';
+import { Hotel } from '../models/hotel';
 
 @Injectable({
   providedIn: 'root',
@@ -139,6 +140,64 @@ export class ClinicService {
       capacity: 200,
     },
   ];
+  
+  hotels: Hotel[] = [
+    {
+        id: "1",
+        name: "Grand Palace Hotel",
+        rating: 4.7,
+        simpleRoom: 150,
+        doubleRoom: 220,
+        url: "https://grandpalacehotel.com",
+        location: "Paris, France"
+    },
+    {
+        id: "2",
+        name: "Seaside Resort & Spa",
+        rating: 4.5,
+        simpleRoom: 180,
+        doubleRoom: 250,
+        url: "https://seasideresort.com",
+        location: "Malibu, California, USA"
+    },
+    {
+        id: "3",
+        name: "Mountain View Lodge",
+        rating: 4.3,
+        simpleRoom: 120,
+        doubleRoom: 200,
+        url: "https://mountainviewlodge.com",
+        location: "Aspen, Colorado, USA"
+    },
+    {
+        id: "4",
+        name: "Luxe Retreat Hotel",
+        rating: 4.9,
+        simpleRoom: 300,
+        doubleRoom: 400,
+        url: "https://luxeretreathotel.com",
+        location: "Dubai, UAE"
+    },
+    {
+        id: "5",
+        name: "The Grand Marquis",
+        rating: 4.2,
+        simpleRoom: 110,
+        doubleRoom: 190,
+        url: "https://grandmarquishotel.com",
+        location: "New York, USA"
+    },
+    {
+        id: "6",
+        name: "Sapphire Bay Resort",
+        rating: 4.6,
+        simpleRoom: 220,
+        doubleRoom: 280,
+        url: "https://sapphirebayresort.com",
+        location: "Sydney, Australia"
+    }
+];
+
 
   constructor() {}
 
@@ -167,6 +226,11 @@ export class ClinicService {
     return of(this.contacts).pipe(delay(100));
   }
 
+  
+  getHotels(id: string): Observable<Hotel[]> {
+    return of(this.hotels).pipe(delay(100));
+  }
+
   updateProfile(profile: Profile): Observable<Profile> {
     this.profile = profile;
     return of(profile).pipe(delay(100));
@@ -185,6 +249,11 @@ export class ClinicService {
   addContact(id: string, contact: Contact): Observable<Contact[]> {
     this.contacts.push(contact);
     return this.getContracts('0');
+  }
+
+  addHotel(id: string, hotel: Hotel) {
+    this.hotels.push(hotel);
+    return this.getHotels('0');  
   }
 
   getMedias(id: string): Observable<Media[]> {

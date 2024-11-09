@@ -8,6 +8,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
 import { HotelsComponent } from './hotels/hotels.component';
 import { ReviewsComponent } from './reviews/reviews.component';
 import { ClinicComponent } from './clinic/clinic.component';
+import { CaseManagersComponent } from './case-managers/case-managers.component';
 
 const routes: Routes = [
   {
@@ -29,6 +30,7 @@ const routes: Routes = [
       { path: 'treatments', component: TreatmentsComponent },
       { path: 'doctors', component: DoctorsComponent },
       { path: 'notifications', component: NotificationsComponent },
+      { path: 'case-manager', component: CaseManagersComponent },
       { path: 'hotels', component: HotelsComponent },
       { path: 'reviews', component: ReviewsComponent },
     ],

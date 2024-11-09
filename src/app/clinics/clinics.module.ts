@@ -14,6 +14,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { AddProcedureDialogComponent } from './add-procedure-dialog/add-procedure-dialog.component';
 import { AddDoctorDialogComponent } from './add-doctor-dialog/add-doctor-dialog.component';
 import { AddContactDialogComponent } from './add-contact-dialog/add-contact-dialog.component';
+import { AddHotelDialogComponent } from './add-hotel-dialog/add-hotel-dialog.component';
 
 
 
@@ -30,7 +31,8 @@ import { AddContactDialogComponent } from './add-contact-dialog/add-contact-dial
     ProfileComponent,
     AddProcedureDialogComponent,
     AddDoctorDialogComponent,
-    AddContactDialogComponent
+    AddContactDialogComponent,
+    AddHotelDialogComponent
   ],
   imports: [
     CommonModule,
