@@ -33,6 +33,7 @@ import { SidenavMenuItemComponent } from './components/sidenav-menu-item/sidenav
 import { JoinPipe } from './pipes/join.pipe';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { StarRatingComponent } from './components/star-rating-component/star-rating-component.component';
+import { ErrorDialogComponent } from './components/error-dialog/error-dialog.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { StarRatingComponent } from './components/star-rating-component/star-rat
     SearchInputComponent,
     SidenavMenuItemComponent,
     JoinPipe,
-    StarRatingComponent
+    StarRatingComponent,
+    ErrorDialogComponent
   ],
   imports: [
     CommonModule,

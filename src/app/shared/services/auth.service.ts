@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
+  accessToken: string;
 
-  constructor() { }
+  constructor() {
+    this.accessToken = 'f47c92a8-8a7e-43b7-bdda-bf77a57c3d1c';
+  }
 }

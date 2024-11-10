@@ -4,12 +4,14 @@ import { Inquiry } from '../models/inquiry';
 import { InqueryStatus } from '../enums/inquery-status';
 import { Kpi } from '../models/kpi';
 import { Appointment } from '../models/appointment';
-
+import { HttpclientService } from 'src/app/shared/services/httpclient.service';
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
 export class InquiriesService {
-  constructor() {}
+  baseUrl: string = environment.apiUrl;
+  constructor(private httpClientService:HttpclientService) {}
   patientNames = [
     'Amine Mghirbi',
     'Khalil Mghirbi',
@@ -76,7 +78,7 @@ export class InquiriesService {
   ];
 
   getInquiries(): Observable<Inquiry[]> {
-    // this.httpClint.get('http://localhost:3000/inquiries');
+    this.httpClientService.get<Inquiry[]>(this.baseUrl).subscribe();
     const inquiries: Inquiry[] = Array.from({ length: 15 }, () => ({
       Id: Math.floor(Math.random() * 1000).toString(), // Random string
       PatientName: this.getRandomItem(this.patientNames),
@@ -98,7 +100,7 @@ export class InquiriesService {
     return of(inquiries);
   }
 
-  getAppointments(id: string): Observable<Appointment[]> {
+  getAppointments(inquiryId: string): Observable<Appointment[]> {
     const appointments: Appointment[] = Array.from({ length: 5 }, () => ({
       hospital: this.getRandomItem(this.clinics),
       date: new Date(),

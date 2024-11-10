@@ -61,6 +61,8 @@ export class ReviewsTableComponent implements OnInit, OnDestroy, AfterViewInit {
       maxWidth: '600px', // Set maximum width
       data: review,
     };
-    this.dialog.open(ReviewReplyDialogComponent, dialogConfig);
+    if (review.status === ReviewStatus.Pending) {
+      this.dialog.open(ReviewReplyDialogComponent, dialogConfig);
+    }
   }
 }

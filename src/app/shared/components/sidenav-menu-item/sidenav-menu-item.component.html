@@ -1,4 +1,4 @@
-<mat-list-item [routerLink]="navItem.route" routerLinkActive #rla="routerLinkActive" [activated]="rla.isActive">
+<mat-list-item [routerLink]="!expandable ? navItem.route : null" routerLinkActive #rla="routerLinkActive" [activated]="rla.isActive">
     <span class="menu-item">
         <span class="basic-menu-item">
             <mat-icon matListItemIcon>{{ navItem.icon }}</mat-icon>
