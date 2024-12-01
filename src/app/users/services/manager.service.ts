@@ -3,11 +3,14 @@ import { delay, Observable, of } from 'rxjs';
 import { User } from '../models/user';
 import { UpdateUserDialogComponent } from '../update-user-dialog/update-user-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { HttpclientService } from 'src/app/shared/services/httpclient.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ManagerService {
+  baseUrl = environment.apiUrl;
   private managerNames: string[] = [
     'John Doe',
     'Jane Smith',
@@ -73,34 +76,31 @@ export class ManagerService {
     'China',
   ];
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public httpClientService:HttpclientService,public dialog: MatDialog) {}
 
   getManagers(): Observable<User[]> {
-    const users: User[] = Array.from({ length: 13 }, () => ({
-      id: Math.floor(Math.random() * 101), // Random string
-      name: this.getRandomItem(this.managerNames),
-      email: this.getRandomItem(this.emails),
-      phone: this.getRandomItem(this.phones),
-      hopital: this.getRandomItem(this.hospitals),
-      country: this.getRandomItem(this.countries),
-    }));
+    const url = `${this.baseUrl}/managers`
+    return this.httpClientService.get<User[]>(url)
+    // const users: User[] = Array.from({ length: 13 }, () => ({
+    //   id: Math.floor(Math.random() * 101), // Random string
+    //   name: this.getRandomItem(this.managerNames),
+    //   email: this.getRandomItem(this.emails),
+    //   phone: this.getRandomItem(this.phones),
+    //   hopital: this.getRandomItem(this.hospitals),
+    //   country: this.getRandomItem(this.countries),
+    // }));
 
-    return of(users);
+    // return of(users);
   }
 
   removeManager(id: number) {
-    console.log('Removing manager with id:', id);
-    return of({});
+    const url = `${this.baseUrl}/managerUs/${id}`
+    return this.httpClientService.delete(url)
   }
 
   updateManager(id: number, user: User) {
-    const dialogConfig = {
-      minWidth: '300px', // Set minimum width
-      width: '50vw', // Set width to 80% of the viewport width
-      maxWidth: '600px', // Set maximum width
-      data: user,
-    };
-    this.dialog.open(UpdateUserDialogComponent, dialogConfig);
+    const url = `${this.baseUrl}/manager/${id}`
+    return this.httpClientService.put<User,void>(url, user)
   }
 
   private getRandomItem<T>(array: T[]): T {

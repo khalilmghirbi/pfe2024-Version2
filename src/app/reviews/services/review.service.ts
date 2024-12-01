@@ -2,13 +2,16 @@ import { Injectable } from '@angular/core';
 import { delay, Observable, of } from 'rxjs';
 import { Review } from '../models/review';
 import { ReviewStatus } from '../enum/review-status';
+import { HttpclientService } from 'src/app/shared/services/httpclient.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReviewService {
+  baseUrl: string = environment.apiUrl;
 
-  constructor() { }
+  constructor(private httpClientService: HttpclientService) { }
   patientNames = [
     'Amine Mghirbi',
     'Khalil Mghirbi',
@@ -54,40 +57,46 @@ export class ReviewService {
   ];
 
   getReviews(): Observable<Review[]> {
-    const reviews: Review[] = Array.from({ length: 5 }, () => ({
-      id : Math.floor(Math.random() * 1000) + 1,
-      receptionDate: new Date(),
-      patienName: this.getRandomItem(this.patientNames),
-      procedure: this.getRandomItem(this.medicalProcedures),
-      hospital: this.getRandomItem(this.clinics),
-      caseManger: this.getRandomItem(this.caseManagers),
-      message: 'The staff was very professional.',
-      rate : Math.floor(Math.random() * 5) + 1,
-      status: this.getRandomItem(this.statuses)
-    }));
+    const url = `${this.baseUrl}/avis`
+    return this.httpClientService.get<Review[]>(url);
+    // const reviews: Review[] = Array.from({ length: 5 }, () => ({
+    //   id : Math.floor(Math.random() * 1000) + 1,
+    //   receptionDate: new Date(),
+    //   patienName: this.getRandomItem(this.patientNames),
+    //   procedure: this.getRandomItem(this.medicalProcedures),
+    //   hospital: this.getRandomItem(this.clinics),
+    //   caseManger: this.getRandomItem(this.caseManagers),
+    //   message: 'The staff was very professional.',
+    //   rate : Math.floor(Math.random() * 5) + 1,
+    //   status: this.getRandomItem(this.statuses)
+    // }));
 
-    return of(reviews);
+    // return of(reviews);
   }
 
   getReviewById(hopitalid: string): Observable<Review[]> {
-    const reviews: Review[] = Array.from({ length: 5 }, () => ({
-      id : Math.floor(Math.random() * 1000) + 1,
-      receptionDate: new Date(),
-      patienName: this.getRandomItem(this.patientNames),
-      procedure: this.getRandomItem(this.medicalProcedures),
-      hospital: this.getRandomItem(this.clinics),
-      caseManger: this.getRandomItem(this.caseManagers),
-      message: 'The staff was very professional.',
-      rate : Math.floor(Math.random() * 5) + 1,
-      status: this.getRandomItem(this.statuses)
-    }));
+    const url = `${this.baseUrl}/avis/${hopitalid}`
+    return this.httpClientService.get<Review[]>(url);
+    // const reviews: Review[] = Array.from({ length: 5 }, () => ({
+    //   id : Math.floor(Math.random() * 1000) + 1,
+    //   receptionDate: new Date(),
+    //   patienName: this.getRandomItem(this.patientNames),
+    //   procedure: this.getRandomItem(this.medicalProcedures),
+    //   hospital: this.getRandomItem(this.clinics),
+    //   caseManger: this.getRandomItem(this.caseManagers),
+    //   message: 'The staff was very professional.',
+    //   rate : Math.floor(Math.random() * 5) + 1,
+    //   status: this.getRandomItem(this.statuses)
+    // }));
 
-    return of(reviews);
+    // return of(reviews);
   }
 
-  replyReview(id: Number, reply: string) {
-    console.log('Replying to review with id:', id, 'and message:', reply);
-    return of({});
+  replyReview(id: Number, reply: string) : Observable<void> {
+    const url = `${this.baseUrl}/avis/${id}`
+    return this.httpClientService.put<{reply:string},void>(url,{reply:reply});
+    // console.log('Replying to review with id:', id, 'and message:', reply);
+    // return of({});
   }
 
   private getRandomItem<T>(array: T[]): T {

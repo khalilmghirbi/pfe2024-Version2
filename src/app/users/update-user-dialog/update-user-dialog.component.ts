@@ -73,8 +73,6 @@ export class UpdateUserDialogComponent {
   }
 
   onSubmit() {
-    if (this.formGroup.valid) {
-      this.managerService.updateManager(this.data.id, this.formGroup.value);
-    }
+    this.managerService.updateManager(this.data.id, this.formGroup.value).subscribe();
   }
 }

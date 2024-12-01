@@ -1,3 +1,3 @@
 export const environment = {
-    apiUrl: 'http://my-prd-url'
+    apiUrl: 'http://localhost:4000'
 };

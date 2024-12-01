@@ -7,6 +7,8 @@ import { Doctor } from '../models/doctor';
 import { Contact } from '../models/contact';
 import { Hotel } from '../models/hotel';
 import { CaseManager } from '../models/case-manager';
+import { HttpclientService } from 'src/app/shared/services/httpclient.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -35,6 +37,7 @@ export class ClinicService {
   specialities: string[] = ['General Medicine', 'Pediatrics', 'Dermatology'];
 
   profile: Profile = {
+    id:"fake",
     name: 'City Health Clinic',
     image:
       'https://marketplace.canva.com/EAEyadYkO0s/1/0/1600w/canva-health-care-logo-fSbVHMz-u48.jpg',
@@ -130,54 +133,54 @@ export class ClinicService {
 
   caseManagers: CaseManager[] = [
     {
-        id: "1",
-        name: "Emma Johnson",
-        email: "emma.johnson@company.com",
-        country: "United States"
+      id: "1",
+      name: "Emma Johnson",
+      email: "emma.johnson@company.com",
+      country: "United States"
     },
     {
-        id: "2",
-        name: "Liam Smith",
-        email: "liam.smith@company.com",
-        country: "Canada"
+      id: "2",
+      name: "Liam Smith",
+      email: "liam.smith@company.com",
+      country: "Canada"
     },
     {
-        id: "3",
-        name: "Sophia Martinez",
-        email: "sophia.martinez@company.com",
-        country: "Mexico"
+      id: "3",
+      name: "Sophia Martinez",
+      email: "sophia.martinez@company.com",
+      country: "Mexico"
     },
     {
-        id: "4",
-        name: "James Wilson",
-        email: "james.wilson@company.com",
-        country: "United Kingdom"
+      id: "4",
+      name: "James Wilson",
+      email: "james.wilson@company.com",
+      country: "United Kingdom"
     },
     {
-        id: "5",
-        name: "Olivia Brown",
-        email: "olivia.brown@company.com",
-        country: "Australia"
+      id: "5",
+      name: "Olivia Brown",
+      email: "olivia.brown@company.com",
+      country: "Australia"
     },
     {
-        id: "6",
-        name: "Benjamin Lee",
-        email: "benjamin.lee@company.com",
-        country: "Singapore"
+      id: "6",
+      name: "Benjamin Lee",
+      email: "benjamin.lee@company.com",
+      country: "Singapore"
     },
     {
-        id: "7",
-        name: "Charlotte Taylor",
-        email: "charlotte.taylor@company.com",
-        country: "Germany"
+      id: "7",
+      name: "Charlotte Taylor",
+      email: "charlotte.taylor@company.com",
+      country: "Germany"
     },
     {
-        id: "8",
-        name: "Lucas Garcia",
-        email: "lucas.garcia@company.com",
-        country: "Spain"
+      id: "8",
+      name: "Lucas Garcia",
+      email: "lucas.garcia@company.com",
+      country: "Spain"
     }
-];
+  ];
 
   treatments: Treatment[] = [
     {
@@ -196,71 +199,69 @@ export class ClinicService {
 
   hotels: Hotel[] = [
     {
-        id: "1",
-        name: "Grand Palace Hotel",
-        rating: 4.7,
-        simpleRoom: 150,
-        doubleRoom: 220,
-        url: "https://grandpalacehotel.com",
-        location: "Paris, France"
+      id: "1",
+      name: "Grand Palace Hotel",
+      rating: 4.7,
+      simpleRoom: 150,
+      doubleRoom: 220,
+      url: "https://grandpalacehotel.com",
+      location: "Paris, France"
     },
     {
-        id: "2",
-        name: "Seaside Resort & Spa",
-        rating: 4.5,
-        simpleRoom: 180,
-        doubleRoom: 250,
-        url: "https://seasideresort.com",
-        location: "Malibu, California, USA"
+      id: "2",
+      name: "Seaside Resort & Spa",
+      rating: 4.5,
+      simpleRoom: 180,
+      doubleRoom: 250,
+      url: "https://seasideresort.com",
+      location: "Malibu, California, USA"
     },
     {
-        id: "3",
-        name: "Mountain View Lodge",
-        rating: 4.3,
-        simpleRoom: 120,
-        doubleRoom: 200,
-        url: "https://mountainviewlodge.com",
-        location: "Aspen, Colorado, USA"
+      id: "3",
+      name: "Mountain View Lodge",
+      rating: 4.3,
+      simpleRoom: 120,
+      doubleRoom: 200,
+      url: "https://mountainviewlodge.com",
+      location: "Aspen, Colorado, USA"
     },
     {
-        id: "4",
-        name: "Luxe Retreat Hotel",
-        rating: 4.9,
-        simpleRoom: 300,
-        doubleRoom: 400,
-        url: "https://luxeretreathotel.com",
-        location: "Dubai, UAE"
+      id: "4",
+      name: "Luxe Retreat Hotel",
+      rating: 4.9,
+      simpleRoom: 300,
+      doubleRoom: 400,
+      url: "https://luxeretreathotel.com",
+      location: "Dubai, UAE"
     },
     {
-        id: "5",
-        name: "The Grand Marquis",
-        rating: 4.2,
-        simpleRoom: 110,
-        doubleRoom: 190,
-        url: "https://grandmarquishotel.com",
-        location: "New York, USA"
+      id: "5",
+      name: "The Grand Marquis",
+      rating: 4.2,
+      simpleRoom: 110,
+      doubleRoom: 190,
+      url: "https://grandmarquishotel.com",
+      location: "New York, USA"
     },
     {
-        id: "6",
-        name: "Sapphire Bay Resort",
-        rating: 4.6,
-        simpleRoom: 220,
-        doubleRoom: 280,
-        url: "https://sapphirebayresort.com",
-        location: "Sydney, Australia"
+      id: "6",
+      name: "Sapphire Bay Resort",
+      rating: 4.6,
+      simpleRoom: 220,
+      doubleRoom: 280,
+      url: "https://sapphirebayresort.com",
+      location: "Sydney, Australia"
     }
-];
+  ];
 
 
-  constructor() {}
+  constructor(private httpClientService: HttpclientService) { }
+  baseUrl = environment.apiUrl;
 
   getClinics(): Observable<{ id: string; name: string }[]> {
-    return of(this.clinics).pipe(
-      map((clinics) =>
-        clinics.map((clinic, index) => ({ id: index.toString(), name: clinic }))
-      ),
-      delay(100)
-    );
+    //20 is just a mock for now ! get the id of the person connected
+    const url = `${this.baseUrl}/clinics/20`
+    return this.httpClientService.get<{ id: string; name: string }[]>(url);
   }
 
   getTreatments(): Observable<Treatment[]> {
@@ -268,6 +269,8 @@ export class ClinicService {
   }
 
   getProfile(id: string): Observable<Profile> {
+    const url = `${this.baseUrl}/profilbyhopital/${id}`
+    return this.httpClientService.get<Profile>(url);
     return of(this.profile).pipe(delay(100));
   }
 
@@ -283,7 +286,7 @@ export class ClinicService {
     return of(this.caseManagers).pipe(delay(100));
   }
 
-  
+
   getHotels(id: string): Observable<Hotel[]> {
     return of(this.hotels).pipe(delay(100));
   }
@@ -315,7 +318,7 @@ export class ClinicService {
 
   addHotel(id: string, hotel: Hotel) {
     this.hotels.push(hotel);
-    return this.getHotels('0');  
+    return this.getHotels('0');
   }
 
   getMedias(id: string): Observable<Media[]> {

@@ -51,8 +51,9 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.profile$ = this.activatedRoute.params.pipe(
       switchMap((params: Params) => {
+        //todo this is not working check why
         const id = params['id'];
-        return this.clinicService.getProfile(id);
+        return this.clinicService.getProfile("1");
       }),
       tap((profile: Profile) => {
         this.formGroup.patchValue(profile);

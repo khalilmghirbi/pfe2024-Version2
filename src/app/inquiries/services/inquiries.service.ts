@@ -78,38 +78,41 @@ export class InquiriesService {
   ];
 
   getInquiries(): Observable<Inquiry[]> {
-    this.httpClientService.get<Inquiry[]>(this.baseUrl).subscribe();
-    const inquiries: Inquiry[] = Array.from({ length: 15 }, () => ({
-      Id: Math.floor(Math.random() * 1000).toString(), // Random string
-      PatientName: this.getRandomItem(this.patientNames),
-      MedicalProcedure: this.getRandomItem(this.medicalProcedures),
-      ReceptionDate: new Date(),
-      AnswerDate: new Date(),
-      CoordinatorName: this.getRandomItem(this.coordinators),
-      CaseManagerName: this.getRandomItem(this.caseManagers),
-      Status: this.getRandomItem(this.statuses),
-      Country: this.getRandomItem(this.countries),
-      Clinic: this.getRandomItem(this.clinics),
-      Age: Math.floor(Math.random() * 100), // Random number between 0 and 100
-      Sex: this.getRandomItem(this.sex),
-      DesiredCity: 'New York',
-      Smoker: Math.random() < 0.5, // Random boolean
-      NatibeLanguage: 'English',
-    }));
+    const url = `${this.baseUrl}/dossiers`
+    return this.httpClientService.get<Inquiry[]>(url);
+    // const inquiries: Inquiry[] = Array.from({ length: 15 }, () => ({
+    //   Id: Math.floor(Math.random() * 1000).toString(), // Random string
+    //   PatientName: this.getRandomItem(this.patientNames),
+    //   MedicalProcedure: this.getRandomItem(this.medicalProcedures),
+    //   ReceptionDate: new Date(),
+    //   AnswerDate: new Date(),
+    //   CoordinatorName: this.getRandomItem(this.coordinators),
+    //   CaseManagerName: this.getRandomItem(this.caseManagers),
+    //   Status: this.getRandomItem(this.statuses),
+    //   Country: this.getRandomItem(this.countries),
+    //   Clinic: this.getRandomItem(this.clinics),
+    //   Age: Math.floor(Math.random() * 100), // Random number between 0 and 100
+    //   Sex: this.getRandomItem(this.sex),
+    //   DesiredCity: 'New York',
+    //   Smoker: Math.random() < 0.5, // Random boolean
+    //   NatibeLanguage: 'English',
+    // }));
 
-    return of(inquiries);
+    // return of(inquiries);
   }
 
   getAppointments(inquiryId: string): Observable<Appointment[]> {
-    const appointments: Appointment[] = Array.from({ length: 5 }, () => ({
-      hospital: this.getRandomItem(this.clinics),
-      date: new Date(),
-      status: this.getRandomItem(this.statuses),
-      payment: Math.floor(Math.random() * 10000), // Random number between 0 and 10000
-      hotel: this.getRandomItem(this.countries),
-    }));
+    const url = `${this.baseUrl}/rdvsbydossierid/${inquiryId}`
+    return this.httpClientService.get<Appointment[]>(url);
+    // const appointments: Appointment[] = Array.from({ length: 5 }, () => ({
+    //   hospital: this.getRandomItem(this.clinics),
+    //   date: new Date(),
+    //   status: this.getRandomItem(this.statuses),
+    //   payment: Math.floor(Math.random() * 10000), // Random number between 0 and 10000
+    //   hotel: this.getRandomItem(this.countries),
+    // }));
 
-    return of(appointments);
+    // return of(appointments);
   }
 
   getKpis(): Observable<Kpi> {
@@ -126,33 +129,7 @@ export class InquiriesService {
     );
   }
 
-  getPatientNames(): Observable<string[]> {
-    return of(this.patientNames);
-  }
 
-  getProcedures(): Observable<string[]> {
-    return of(this.medicalProcedures);
-  }
-
-  getCoordinators(): Observable<string[]> {
-    return of(this.coordinators);
-  }
-
-  getCaseManagers(): Observable<string[]> {
-    return of(this.caseManagers);
-  }
-
-  getStatuses(): Observable<string[]> {
-    return of(this.statuses);
-  }
-
-  getClinics(): Observable<string[]> {
-    return of(this.clinics);
-  }
-
-  getCountries(): Observable<string[]> {
-    return of(this.countries);
-  }
 
   private getRandomItem<T>(array: T[]): T {
     return array[Math.floor(Math.random() * array.length)];

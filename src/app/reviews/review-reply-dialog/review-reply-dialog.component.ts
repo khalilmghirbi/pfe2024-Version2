@@ -34,6 +34,9 @@ export class ReviewReplyDialogComponent {
   
 
   onSubmit() {
-    this.reviewService.replyReview(this.data.id, this.formGroup.value.reply).subscribe();
+    console.log(this.formGroup.value)
+    this.reviewService.replyReview(this.data.id, this.formGroup.value.reply).subscribe(
+      console.log
+    );
   }
 }

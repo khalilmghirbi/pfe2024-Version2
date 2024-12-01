@@ -21,9 +21,10 @@ export class HttpclientService {
   }
 
   get<Touput>(url: string, params?: HttpParams): Observable<Touput> {
-    const headers: HttpHeaders = this.getAuthHeaders();
-    return this.httpClient.get<Touput>(url, { params, headers }).pipe(
+    // const headers: HttpHeaders = this.getAuthHeaders();
+    return this.httpClient.get<Touput>(url, { params }).pipe(
       catchError((error: Error) => {
+        console.log(error)
         this.openErrorDialog(error);
         return NEVER;
       })
@@ -50,7 +51,7 @@ export class HttpclientService {
     );
   }
 
-  delete<Tinput>(url: string, params: HttpParams): Observable<Tinput> {
+  delete<Tinput>(url: string, params?: HttpParams): Observable<Tinput> {
     const headers: HttpHeaders = this.getAuthHeaders();
     return this.httpClient.delete<Tinput>(url, { headers, params });
   }

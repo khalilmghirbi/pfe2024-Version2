@@ -46,10 +46,18 @@ export class ReviewsTableComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnInit() {
-    this.subscription = this.reviewService.getReviews().subscribe((data) => {
-      this.dataSource.data = data;
-    });
+    this.fetchAll();
   }
+
+  fetchAll(){
+    this.subscription = this.reviewService.getReviews().subscribe((data:Review[]) => {
+      this.dataSource.data = data.map((review:Review)=>{
+         review.reply ? review.status = ReviewStatus.Answered : review.status = ReviewStatus.Pending
+         return review;
+       });
+     });
+  }
+
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
@@ -62,7 +70,12 @@ export class ReviewsTableComponent implements OnInit, OnDestroy, AfterViewInit {
       data: review,
     };
     if (review.status === ReviewStatus.Pending) {
-      this.dialog.open(ReviewReplyDialogComponent, dialogConfig);
+      this.dialog.open(ReviewReplyDialogComponent, dialogConfig).afterClosed().subscribe(
+       ()=>{
+         console.log("closed");
+         this.fetchAll();
+       }
+      );
     }
   }
 }

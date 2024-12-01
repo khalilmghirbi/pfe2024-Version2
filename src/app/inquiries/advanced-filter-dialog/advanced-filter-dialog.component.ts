@@ -1,15 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { InquiriesService } from '../services/inquiries.service';
 import { Filter } from '../models/filter';
+import { Inquiry } from '../models/inquiry';
 
 @Component({
   selector: 'app-advanced-filter-dialog',
   templateUrl: './advanced-filter-dialog.component.html',
   styleUrls: ['./advanced-filter-dialog.component.scss'],
 })
-export class AdvancedFilterDialogComponent {
+export class AdvancedFilterDialogComponent implements OnInit {
   /**
    *
    */
@@ -22,6 +23,11 @@ export class AdvancedFilterDialogComponent {
   form!: FormGroup;
   dateRangeForm!: FormGroup;
   canResetFilter: boolean = false;
+  procedures!: string[];
+  statuses!: string[];
+  clinics!: string[];
+  casemanagers!: string[];
+  countries!: string[];
 
   get procedure(): FormControl<string[]> {
     return this.form.get('procedure') as FormControl<string[]>;
@@ -48,6 +54,15 @@ export class AdvancedFilterDialogComponent {
   }
 
   ngOnInit(): void {
+    this.iquiryService.getInquiries()
+      .subscribe((inquiries:Inquiry[])=>{
+        this.procedures = [...new Set<string>(inquiries.map(x => x.MedicalProcedure))];
+        this.statuses = [...new Set<string>(inquiries.map(x => x.Status))];
+        this.clinics = [...new Set<string>(inquiries.map(x => x.Clinic))];
+        this.casemanagers = [...new Set<string>(inquiries.map(x => x.CaseManagerName))];
+        this.countries = [...new Set<string>(inquiries.map(x => x.Country))];
+
+      })
     this.form = this.formbuilder.group({
       dateRange: this.formbuilder.group({
         from: [''],

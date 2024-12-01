@@ -3,11 +3,12 @@ import { ReviewStatus } from "../enum/review-status";
 export interface Review {
     id: Number;
     receptionDate: Date;
-    patienName: string;
+    patientName: string;
     procedure: string;
     hospital: string;
-    caseManger: string;
+    caseManager: string;
     message: string;
     rate: number;
     status: ReviewStatus;
+    reply?:string;
 }
