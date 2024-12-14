@@ -1,0 +1,29 @@
+<span>
+    <mat-card *ngIf="hotels$ | async as obj" class="card-container">
+        <mat-card-header>
+            <mat-card-title-group>
+                <mat-card-title>Hotels</mat-card-title>
+                <button mat-flat-button color="primary" (click)="add()">Add</button>
+            </mat-card-title-group>
+        </mat-card-header>
+        <mat-card-content>
+            <div role="list">
+                <span *ngFor="let hotel of obj">
+                    <span class="item-container full-width">
+                        <span class="hotel_name">{{hotel.name}}</span>
+                        <app-star-rating-component [rating]="hotel.rating" class="hotel_rating"></app-star-rating-component>
+                        <span class="hotel_actions">
+                            <button mat-icon-button color="primary" (click)="edit(hotel)">
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                            <button mat-icon-button color="warn" (click)="remove(hotel)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </span>
+                    </span>
+                    <mat-divider></mat-divider>
+                </span>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</span>

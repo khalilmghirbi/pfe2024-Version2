@@ -1,0 +1,13 @@
+.basic-menu-item{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    mat-icon{
+        margin-right: 10px;
+    }
+}
+
+.menu-item{
+    display: flex;
+    flex-direction: row;
+}

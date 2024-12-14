@@ -1,0 +1,30 @@
+<span>
+    <mat-card *ngIf="caseManager$ | async as obj" class="card-container">
+        <mat-card-header>
+            <mat-card-title-group>
+                <mat-card-title>Case Manager</mat-card-title>
+                <button mat-flat-button color="primary" (click)="add()">Add</button>
+            </mat-card-title-group>
+        </mat-card-header>
+        <mat-card-content>
+            <div role="list">
+                <span *ngFor="let manager of obj">
+                    <span class="item-container full-width">
+                        <span>{{manager.name}}</span>
+                        <span>{{manager.email}}</span>
+                        <span>{{manager.country}}</span>
+                        <span class="hotel_actions">
+                            <button mat-icon-button color="primary" (click)="edit(manager)">
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                            <button mat-icon-button color="warn" (click)="remove(manager)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </span>
+                    </span>
+                    <mat-divider></mat-divider>
+                </span>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</span>

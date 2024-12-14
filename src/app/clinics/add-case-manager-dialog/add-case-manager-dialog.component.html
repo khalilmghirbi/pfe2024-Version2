@@ -1,0 +1,20 @@
+<div class="dialog-container">
+    <h1 mat-dialog-title>Add Case Managaer</h1>
+    <div mat-dialog-content [formGroup]="formGroup">
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="Enter full name" [formControl]="nameControl">
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Enter email" [formControl]="emailControl">
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Country</mat-label>
+            <input matInput placeholder="Enter country" [formControl]="countryControl">
+        </mat-form-field>
+    </div>
+    <mat-dialog-actions>
+        <button mat-flat-button color="primary" class="full-width" (click)="onSubmit()">Save</button>
+    </mat-dialog-actions>
+</div>

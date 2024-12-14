@@ -1,0 +1,75 @@
+<div class="table-container mat-elevation-z3">
+    <table mat-table [dataSource]="dataSource" matSort matSortActive="created" matSortDisableClear
+        matSortDirection="desc">
+        <ng-container matColumnDef="Reception Date">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Reception Date</th>
+            <td mat-cell *matCellDef="let row">{{ row.receptionDate| date:'short' }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="Patient Name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Patient Name
+            </th>
+            <td mat-cell *matCellDef="let row">{{ row.patienName }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="Procedure">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Procedure
+            </th>
+            <td mat-cell *matCellDef="let row">{{ row.procedure }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="Hospital">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Hospital
+            </th>
+            <td mat-cell *matCellDef="let row">{{ row.hospital }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="Case Manager">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Case Manager
+            </th>
+            <td mat-cell *matCellDef="let row">{{ row.caseManger }}</td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="Message">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Message
+            </th>
+            <td mat-cell *matCellDef="let row">{{ row.message }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="Rate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Rate
+            </th>
+            <td mat-cell *matCellDef="let row">
+                <app-star-rating-component [rating]="row.rate"></app-star-rating-component>
+                <!-- <star-rating [starType]="'svg'" [rating]="2.63"></star-rating> -->
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Status">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Status
+            </th>
+            <td mat-cell *matCellDef="let row">
+                <span
+                    [ngClass]="{'success-bg' : row.status === status.Answered , 'warn-bg': row.status !== status.Answered, 'pending-reply': row.status !== status.Answered}"
+                    (click)="reply(row)">
+                    <span>{{ row.status }}</span>
+                    <mat-icon *ngIf="row.status !== status.Answered">reply</mat-icon>
+                </span>
+            </td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <span class="spacer"></span>
+    <mat-paginator [length]="resultsLength" [pageSizeOptions]="[5,10, 25, 100]"></mat-paginator>
+</div>

@@ -1,0 +1,37 @@
+<span class="medias-container">
+    <span class="medias-list-container">
+        <mat-card class="medias-card" *ngFor="let media of medias$ | async">
+            <span class="flex-row">
+                <mat-card-title class="title-card">{{media.desc}}</mat-card-title>
+                <button mat-icon-button (click)="remove(media)">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </span>
+            <img mat-card-image [src]="media.path">
+            <span class="spacer"></span>
+            <mat-card-content>
+                <span>
+                    <span class="label">Spoken languages: </span>
+                    <span>{{ media.language | join}}</span>
+                </span>
+            </mat-card-content>
+        </mat-card>
+    </span>
+    <span class="medias-form-container" [formGroup]="formGroup">
+        <div class="attach-file">
+            <mat-form-field appearance="fill">
+                <mat-label>Image</mat-label>
+                <input matInput [formControl]="nameControl">
+            </mat-form-field>
+            <button mat-icon-button color="primary" (click)="fileInput.click()">
+                <label for="file-upload" style="cursor: pointer;">
+                    <input #fileInput type="file" accept="image/*" (change)="setFileData($event)" hidden />
+                    <mat-icon>attach_file</mat-icon>
+                </label>
+            </button>
+        </div>
+        <button mat-flat-button color="primary" (click)="uploadFile()">Upload</button>
+        <mat-progress-bar *ngIf="displayProgress" mode="determinate" [value]="progress"></mat-progress-bar>
+    </span>
+
+</span>

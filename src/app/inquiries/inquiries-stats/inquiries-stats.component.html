@@ -1,0 +1,4 @@
+<div class="stats-container mat-elevation-z1">
+    <app-inquiries-stat-card *ngFor="let kpi of Kpis" [title]='kpi.title' [value]='kpi.value'
+        [status]='kpi.status'></app-inquiries-stat-card>
+</div>

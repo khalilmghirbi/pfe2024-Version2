@@ -1,0 +1,12 @@
+<div appearance="outlined" class="card-stats">
+  <div>
+      <span class="title">{{title}}</span>
+      <span class="value">{{value}}</span>
+  </div>
+    <span class="status" 
+    [ngClass]="{
+      'warn-bg': status === 'warning',
+      'critical-bg': status === 'critical',
+      'success-bg': status === 'success'
+  }">{{status}}</span>
+</div>

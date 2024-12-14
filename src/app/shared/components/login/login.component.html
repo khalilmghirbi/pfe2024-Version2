@@ -1,0 +1,19 @@
+<mat-card>
+    <mat-card-header>
+        <img src="assets/images/profile.png" width="80px" alt="logo">
+    </mat-card-header>
+    <mat-card-content [formGroup]="formGroup">
+        <mat-form-field class="full-width">
+            <mat-label>Username</mat-label>
+            <input matInput placeholder="Enter username or email" [formControl]="emailControl">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Password</mat-label>
+            <input matInput placeholder="Enter password" type="password" [formControl]="passwordControl">
+        </mat-form-field>
+        <p class="message">Not registered? <a href="#">Create an account</a></p>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-flat-button color="primary" class="full-width" (click)="onSubmit()">LOGIN</button>
+    </mat-card-actions>
+</mat-card>

@@ -1,0 +1,25 @@
+.drawer-container {
+    width: 100%;
+    height: calc(100% - 64px);
+  }
+  
+  .sidenav {
+    padding: 8px 8px 0 8px;
+  }
+
+  .login-container {
+    background: linear-gradient(90deg, rgb(41, 87, 214) 0%, rgb(39, 6, 138) 50%);
+    font-family: "Poppins";    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:100vh ;
+  }
+//   :host ::ng-deep .large-settings-sidenav {
+//     width: 15%;
+//   }
+
+//   :host ::ng-deep .mat-toolbar-single-row {
+//     height: 48px;
+// }
+  

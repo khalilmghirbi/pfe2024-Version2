@@ -1,0 +1,29 @@
+<span>
+    <mat-card *ngIf="doctors$ | async as obj" class="card-container">
+        <mat-card-header>
+            <mat-card-title-group>
+                <mat-card-title>Dcotors</mat-card-title>
+                <button mat-flat-button color="primary" (click)="add()">Add</button>
+            </mat-card-title-group>
+        </mat-card-header>
+        <mat-card-content>
+            <div role="list">
+                <span *ngFor="let doctor of obj">
+                    <span class="item-container full-width">
+                        <span>{{doctor.name}}</span>
+                        <span>{{doctor.specialities | join}}</span>
+                        <span>
+                            <button mat-icon-button color="primary" (click)="edit(doctor)">
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                            <button mat-icon-button color="warn" (click)="remove(doctor)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </span>
+                    </span>
+                    <mat-divider></mat-divider>
+                </span>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</span>

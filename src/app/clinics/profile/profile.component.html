@@ -1,0 +1,42 @@
+<mat-card *ngIf="profile$ | async as obj" class="card-container">
+    <mat-card-header>
+        <mat-card-title-group>
+            <mat-card-title>{{obj.name}}</mat-card-title>
+            <img *ngIf="obj.image" mat-card-xl-image [src]="obj.image">
+        </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content [formGroup]="formGroup" class="profile-container">
+        <mat-form-field appearance="fill">
+            <mat-label>Address</mat-label>
+            <input matInput [formControl]="addressControl">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>City</mat-label>
+            <input matInput [formControl]="cityControl">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Opening Year</mat-label>
+            <input matInput [formControl]="openingYearControl">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Number of Beds</mat-label>
+            <input matInput [formControl]="capacityControl">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Direct Price Warranty Certificate</mat-label>
+            <input matInput [formControl]="capacityControl">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Phone</mat-label>
+            <input type="tel" matInput [formControl]="phoneControl">
+        </mat-form-field>
+        <mat-chip-set>
+            <mat-chip class="example-box" *ngFor="let service of services">
+                {{service}}
+            </mat-chip>
+        </mat-chip-set>
+    </mat-card-content>
+    <mat-card-actions align="end">
+        <button color="primary" mat-flat-button  (click)="onSubmit()">Save</button>
+    </mat-card-actions>
+</mat-card>

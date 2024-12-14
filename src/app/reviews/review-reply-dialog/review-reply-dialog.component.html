@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>Reply Comment</h2>
+<mat-dialog-content>
+    <span [formGroup]="formGroup" (ngSubmit)="onSubmit()" class="reply-container">
+        <mat-form-field>
+            <mat-label>Comment</mat-label>
+            <textarea matInput [formControl]="commentControl"></textarea>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Reply</mat-label>
+            <textarea matInput [formControl]="replyControl"></textarea>
+        </mat-form-field>
+    </span>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial type="submit" color="primary" (click)="onSubmit()">reply</button>
+</mat-dialog-actions>

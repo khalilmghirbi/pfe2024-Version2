@@ -1,0 +1,21 @@
+<div class="dialog-container">
+    <h1 mat-dialog-title>Advanced Filter</h1>
+    <div mat-dialog-content [formGroup]="form" class="advanced-filter-container">
+        <app-filter-date-range-input label="Enter a date range" [control]="dateRange"></app-filter-date-range-input>
+        <app-filter-select-input label="Medical Procedure" [control]="procedure"
+            [options]="procedures ?? []"></app-filter-select-input>
+        <app-filter-select-input label="Status" [control]="status"
+            [options]="statuses?? []"></app-filter-select-input>
+        <app-filter-select-input label="Clinic" [control]="clinic"
+            [options]="clinics ?? []"></app-filter-select-input>
+        <app-filter-select-input label="CaseManagers" [control]="caseManager"
+            [options]="casemanagers ?? []"></app-filter-select-input>
+        <app-filter-select-input label="Country" [control]="country"
+            [options]="countries ?? []"></app-filter-select-input>
+    </div>
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>Cancel</button>
+        <button mat-button *ngIf="canResetFilter" (click)="reset()">Reset</button>
+        <button mat-button [mat-dialog-close]="form.value" color="primary" cdkFocusInitial>Apply</button>
+    </mat-dialog-actions>
+</div>

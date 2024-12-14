@@ -1,0 +1,17 @@
+.filter-container{
+    display: flex;
+}
+
+.filter-container :first-child{
+    flex: 1;
+}
+
+.filter-container > button{
+    height : 56px;
+    margin-left: 5px;
+}
+
+
+.small-icon{
+    width: 10px;
+}

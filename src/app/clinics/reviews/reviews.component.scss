@@ -1,0 +1,17 @@
+.table-container {
+    overflow: hidden;
+    display: flex;
+    padding: 15px;
+    flex-direction: column;
+    height: calc(100% - 30px);
+}
+
+.pending-reply {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+

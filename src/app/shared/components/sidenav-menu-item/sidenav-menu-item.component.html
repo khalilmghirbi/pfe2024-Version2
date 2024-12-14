@@ -1,0 +1,16 @@
+<mat-list-item [routerLink]="!expandable ? navItem.route : null" routerLinkActive #rla="routerLinkActive" [activated]="rla.isActive">
+    <span class="menu-item">
+        <span class="basic-menu-item">
+            <mat-icon matListItemIcon>{{ navItem.icon }}</mat-icon>
+            <span *ngIf="showLabel$ | async">{{ navItem.title }}</span>
+        </span>
+        <span class="spacer"></span>
+        <mat-icon matListItemIcon *ngIf="expandable" (click)="toggleExpanded()">
+            {{ expanded ? 'expand_less' : 'expand_more' }}
+        </mat-icon>
+    </span>
+</mat-list-item>
+<span *ngIf="expanded">
+    <app-sidenav-menu-item *ngFor="let child of navItem.subItems" [navItem]="child">
+    </app-sidenav-menu-item>
+</span>

@@ -1,0 +1,21 @@
+<mat-card class="custom-card">
+    <span class="flex-row">
+        <mat-card-header>
+            <mat-card-title>
+                <span color="primary">{{appointement.hospital}}</span>
+            </mat-card-title>
+            <mat-card-subtitle>
+                {{appointement.date | date:'medium' }}
+            </mat-card-subtitle>
+        </mat-card-header>
+        <span class="status" [ngClass]="getStatusClass(appointement)">{{ appointement.status }}</span>
+    </span>
+    <mat-card-content>
+        <p><strong>Payment:</strong> {{ appointement.payment | currency }}</p>
+        <p><strong>Hotel:</strong> {{ appointement.hotel }}</p>
+    </mat-card-content>
+    <!-- <mat-card-actions *ngIf="upComing" align="end">
+        <button mat-stroked-button color="warn">Decline</button>
+        <button mat-stroked-button color="primary">Confirm</button>
+    </mat-card-actions> -->
+</mat-card>

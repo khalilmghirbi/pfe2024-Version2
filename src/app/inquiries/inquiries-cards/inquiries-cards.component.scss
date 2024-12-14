@@ -1,0 +1,35 @@
+.cards-container {
+  display: flex;
+  justify-content: start;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.status {
+  padding: 5px;
+  border-radius: 2px;
+  width: max-content;
+}
+
+.card {
+  margin: 5px;
+  min-width: 200px;
+  cursor: pointer;
+}
+
+.card-content {
+  padding: 10px;
+}
+
+.label {
+  font-weight: 500;
+}
+
+.card-content * {
+  padding: 1%;
+}
+
+.menu-icon  {
+  padding-top: 16px;
+  padding-right: 5px;
+}

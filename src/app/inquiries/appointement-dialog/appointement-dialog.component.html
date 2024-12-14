@@ -1,0 +1,41 @@
+<mat-dialog-content>
+    <mat-tab-group>
+        <mat-tab label="Upcoming">
+            <app-appointement *ngFor="let appointment of appointmentsInProgress$ | async"
+                [appointement]="appointment" [upComing]="true"></app-appointement>
+        </mat-tab>
+        <mat-tab label="Passed">
+            <app-appointement *ngFor="let appointment of appointmentsPassed$ | async"
+            [appointement]="appointment" [upComing]="false"></app-appointement>
+        </mat-tab>
+    </mat-tab-group>
+</mat-dialog-content>
+<!-- <div>
+    <div *ngFor="let appointment of appointments$ | async">
+        <div>
+            <span>{{ appointment.hospital }}</span>
+            <span>{{
+                appointment.date | date : "medium"
+                }}</span>
+            <span>
+                {{ appointment.status }}</span>
+        </div>
+        <div>
+            <div>
+                <span>
+                    <span style="font-size: 48px;"> calendar_month </span>
+                    <span>Advanced Payments:</span>
+                    <span>{{ appointment.payment | currency }}</span>
+                </span>
+            </div>
+            <span>Hotel: <a>{{ appointment.hotel }}</a></span>
+        </div>
+        <div>
+            <button>Payment</button>
+            <button>Cancel</button>
+        </div>
+        <div>
+            <button>Confirm or cancel it</button>
+        </div>
+    </div>
+</div> -->

@@ -1,0 +1,58 @@
+<div class="container">
+  <app-inquiries-filter (search)="handleSearch($event)"
+    (advancedFilter)="handleAdvancedFilter($event)"></app-inquiries-filter>
+  <div class="cards-container" cdkDropList (cdkDropListDropped)="drop($event)">
+    <mat-card class="card" cdkDrag *ngFor="let inquiry of inquiries$ | async">
+      <span class="flex-row">
+        <mat-card-header>
+          <mat-card-title>
+            {{ inquiry.PatientName }}
+          </mat-card-title>
+          <mat-card-subtitle>
+            {{ inquiry.MedicalProcedure }}
+          </mat-card-subtitle>
+        </mat-card-header>
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="dispalyAppointments(inquiry)">
+            <mat-icon>calendar_month</mat-icon>
+            <span>Appointments</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>summarize</mat-icon>
+            <span>Quatations</span>
+          </button>
+          <button mat-menu-item (click)="displayInfo(inquiry)">
+            <mat-icon>info</mat-icon>
+            <span>Info</span>
+          </button>
+        </mat-menu>
+      </span>
+      <mat-card-content class="card-content flex-column">
+        <span class="flex-row">
+          <span class="flex-column">
+            <span class="label">Case Manager:</span>
+            <span>{{ inquiry.CaseManagerName }}</span>
+          </span>
+          <span class="flex-column">
+            <span class="label">Coordinator:</span>
+            <span>{{ inquiry.CoordinatorName }}</span>
+          </span>
+        </span>
+        <span class="status" [ngClass]="getStatusClass(inquiry)">{{ inquiry.Status }}</span>
+        <span class="flex-row">
+          <span class="flex-column">
+            <span class="label">Awnser date:</span>
+            <span>{{ inquiry.AnswerDate | date}}</span>
+          </span>
+          <span class="flex-column">
+            <span class="label">ReceptionDate date:</span>
+            <span>{{ inquiry.ReceptionDate | date}}</span>
+          </span>
+        </span>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
