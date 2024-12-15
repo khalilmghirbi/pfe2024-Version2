@@ -63,6 +63,8 @@ export class HotelsComponent {
   }
 
   remove(hotel: Hotel) {
-    this.hotelService.deleteHotel(hotel.id);
+    this.hotelService.deleteHotel(hotel.id).subscribe(()=>{
+      this.hotels$ = this.hotelService.getHotels(this.hopitalId);
+    });
   }
 }

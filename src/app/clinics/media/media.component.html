@@ -2,12 +2,12 @@
     <span class="medias-list-container">
         <mat-card class="medias-card" *ngFor="let media of medias$ | async">
             <span class="flex-row">
-                <mat-card-title class="title-card">{{media.desc}}</mat-card-title>
+                <mat-card-title class="title-card">{{formatNaming(media.desc)}}</mat-card-title>
                 <button mat-icon-button (click)="remove(media)">
                     <mat-icon>close</mat-icon>
                 </button>
             </span>
-            <img mat-card-image [src]="media.path">
+            <img mat-card-image [src]="decodePath(media.path)" alt="Image is not availble">
             <span class="spacer"></span>
             <mat-card-content>
                 <span>

@@ -30,10 +30,11 @@ export class AppointementDialogComponent {
             appointment.status === AppointmentStatus.New
         )
       );
+
       this.appointmentsPassed.next(
         appointments.filter(
           (appointment) =>
-            appointment.status === AppointmentStatus.Closed ||
+            appointment.status === AppointmentStatus.Confirmed ||
             appointment.status === AppointmentStatus.Rejected
         )
       );

@@ -6,13 +6,14 @@ import { LoginResponse } from '../models/login-response';
 import { UserDetail } from '../models/user-detail';
 import { TokenDetail } from '../models/token-detail';
 import { LoginRequest } from '../models/login-request';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   private baseUrl: string = environment.apiUrl;
-  constructor(private httpClientService: HttpclientService) {}
+  constructor(private httpClientService: HttpclientService, private router: Router) {}
   private loginResponse: BehaviorSubject<TokenDetail | null> =
     new BehaviorSubject<TokenDetail | null>(this.loadTokenFromStorage());
 
@@ -46,7 +47,9 @@ export class AuthService {
   }
 
   logout(): void {
+    localStorage.removeItem('token');
     this.loginResponse.next(null);
+    this.router.navigate(["login"]);
   }
 
   isAuthenticated(): boolean {

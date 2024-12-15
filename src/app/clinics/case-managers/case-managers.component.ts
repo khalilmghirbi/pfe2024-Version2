@@ -63,6 +63,8 @@ export class CaseManagersComponent {
   }
 
   remove(contact: CaseManager) {
-    this.managerService.deleteCaseManager(contact.id);
+    this.managerService.deleteCaseManager(contact.id).subscribe(() =>{
+      this.caseManager$ = this.managerService.getCaseManagers(this.hopitalId);
+    });
   }
 }

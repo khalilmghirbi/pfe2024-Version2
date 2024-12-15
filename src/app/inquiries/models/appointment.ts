@@ -9,7 +9,7 @@ export interface Appointment {
 export enum AppointmentStatus {
     New = "new",
     InProgress = "inProgress",
-    Closed = "closed",
+    Confirmed = "confirmed",
     Rejected = "rejected"
 }
 

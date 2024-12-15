@@ -1,41 +1,21 @@
-<mat-dialog-content>
+<mat-dialog-content *ngIf="{
+    inPrg: appointmentsInProgress$ | async,
+    passed: appointmentsPassed$ | async
+  } as obj">
     <mat-tab-group>
         <mat-tab label="Upcoming">
-            <app-appointement *ngFor="let appointment of appointmentsInProgress$ | async"
-                [appointement]="appointment" [upComing]="true"></app-appointement>
+            <span class="empty-appointment" *ngIf="obj.inPrg?.length === 0; else showInPrgData">No upcoming Appointments</span>
+            <ng-template #showInPrgData>
+                <app-appointement *ngFor="let appointment of obj.inPrg" [appointement]="appointment"
+                    [upComing]="true"></app-appointement>
+            </ng-template>
         </mat-tab>
         <mat-tab label="Passed">
-            <app-appointement *ngFor="let appointment of appointmentsPassed$ | async"
-            [appointement]="appointment" [upComing]="false"></app-appointement>
+            <span class="empty-appointment" *ngIf="obj.passed?.length === 0; else showPassedData">No Passed Appointments</span>
+            <ng-template #showPassedData>
+                <app-appointement *ngFor="let appointment of obj.passed" [appointement]="appointment"
+                    [upComing]="false"></app-appointement>
+            </ng-template>
         </mat-tab>
     </mat-tab-group>
 </mat-dialog-content>
-<!-- <div>
-    <div *ngFor="let appointment of appointments$ | async">
-        <div>
-            <span>{{ appointment.hospital }}</span>
-            <span>{{
-                appointment.date | date : "medium"
-                }}</span>
-            <span>
-                {{ appointment.status }}</span>
-        </div>
-        <div>
-            <div>
-                <span>
-                    <span style="font-size: 48px;"> calendar_month </span>
-                    <span>Advanced Payments:</span>
-                    <span>{{ appointment.payment | currency }}</span>
-                </span>
-            </div>
-            <span>Hotel: <a>{{ appointment.hotel }}</a></span>
-        </div>
-        <div>
-            <button>Payment</button>
-            <button>Cancel</button>
-        </div>
-        <div>
-            <button>Confirm or cancel it</button>
-        </div>
-    </div>
-</div> -->

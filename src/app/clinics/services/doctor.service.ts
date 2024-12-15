@@ -12,7 +12,7 @@ export class DoctorService {
   baseUrl = environment.apiUrl;
 
   getDoctors(hopitalId: string): Observable<Doctor[]> {
-    const url = `${this.baseUrl}/doctorbyhopitalid/${hopitalId}`
+    const url = `${this.baseUrl}/doctorbyhopital/${hopitalId}`
     return this.httpClientService.get<Doctor[]>(url);
   }
 

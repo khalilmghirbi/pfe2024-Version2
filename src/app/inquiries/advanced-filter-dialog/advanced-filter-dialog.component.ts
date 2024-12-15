@@ -56,11 +56,11 @@ export class AdvancedFilterDialogComponent implements OnInit {
   ngOnInit(): void {
     this.iquiryService.getInquiries()
       .subscribe((inquiries:Inquiry[])=>{
-        this.procedures = [...new Set<string>(inquiries.map(x => x.MedicalProcedure))];
-        this.statuses = [...new Set<string>(inquiries.map(x => x.Status))];
-        this.clinics = [...new Set<string>(inquiries.map(x => x.Clinic))];
-        this.casemanagers = [...new Set<string>(inquiries.map(x => x.CaseManagerName))];
-        this.countries = [...new Set<string>(inquiries.map(x => x.Country))];
+        this.procedures = [...new Set<string>(inquiries.map(x => x.MedicalProcedure).filter(value => !!value))];
+        this.statuses = [...new Set<string>(inquiries.map(x => x.Status).filter(value => !!value))];
+        this.clinics = [...new Set<string>(inquiries.map(x => x.Clinic).filter(value => !!value))];
+        this.casemanagers = [...new Set<string>(inquiries.map(x => x.CaseManagerName).filter(value => !!value))];
+        this.countries = [...new Set<string>(inquiries.map(x => x.Country).filter(value => !!value))];
 
       })
     this.form = this.formbuilder.group({
@@ -74,7 +74,7 @@ export class AdvancedFilterDialogComponent implements OnInit {
       caseManager: [[]],
       country: [[]],
     });
-    const storedFilter: Filter = JSON.parse(localStorage.getItem('filter') || '{}');
+    const storedFilter: Filter = JSON.parse(localStorage.getItem('filter') ?? '{}');
     if (storedFilter) {
       this.canResetFilter = true;
       this.form.patchValue(storedFilter);

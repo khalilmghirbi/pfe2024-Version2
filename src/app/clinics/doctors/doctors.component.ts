@@ -16,15 +16,7 @@ export class DoctorsComponent {
   doctors$!: Observable<Doctor[]>;
   hopitalId!: string;
   constructor(private doctorService: DoctorService, private clinicService: ClinicService, private dialog: MatDialog) {
-    this.doctors$ = this.clinicService.activeClinics$.pipe(
-      switchMap((clinicId: number | null) => {
-        if (!clinicId) {
-          return NEVER;
-        }
-        this.hopitalId = clinicId.toString();
-        return this.doctorService.getDoctors(this.hopitalId);
-      })
-    );
+    this.loadDoctors()
   }
 
   add() {
@@ -42,6 +34,18 @@ export class DoctorsComponent {
     });;
   }
 
+  loadDoctors(){
+    this.doctors$ = this.clinicService.activeClinics$.pipe(
+      switchMap((clinicId: number | null) => {
+        if (!clinicId) {
+          return NEVER;
+        }
+        this.hopitalId = clinicId.toString();
+        return this.doctorService.getDoctors(this.hopitalId);
+      })
+    );
+  }
+
   edit(doctor: Doctor){
     const dialogConfig = {
       minWidth: '300px', // Set minimum width
@@ -51,7 +55,7 @@ export class DoctorsComponent {
     };
     this.dialog.open(AddDoctorDialogComponent, dialogConfig).afterClosed().subscribe((doctor: Doctor)=>{
       if(doctor){
-        this.doctorService.updateDoctor(this.hopitalId,doctor).subscribe(()=>{
+        this.doctorService.updateDoctor(doctor.id,doctor).subscribe(()=>{
           this.doctors$ = this.doctorService.getDoctors(this.hopitalId);
         });
       }
@@ -59,6 +63,8 @@ export class DoctorsComponent {
   }
 
   remove(doctor: Doctor){
-    this.doctorService.deleteDoctor(doctor.id);
+    this.doctorService.deleteDoctor(doctor.id).subscribe(() => {
+      this.doctors$ = this.doctorService.getDoctors(this.hopitalId);
+    });
   }
 }

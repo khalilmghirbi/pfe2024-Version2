@@ -1,4 +1,4 @@
-<mat-tab-group class="sticky-tab-group" animationDuration="0ms" (selectedTabChange)="onTabChange($event)"
+<mat-tab-group class="sticky-tab-group" animationDuration="0ms" [selectedIndex]="selectedIndex" (selectedTabChange)="onTabChange($event)"
     [selectedIndex]="selectedIndex">
     <mat-tab *ngFor="let title of titles" [label]="title | titlecase">
     </mat-tab>

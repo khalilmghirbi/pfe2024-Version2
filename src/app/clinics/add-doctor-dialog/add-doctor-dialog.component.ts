@@ -39,7 +39,7 @@ export class AddDoctorDialogComponent {
   }
 
   get photoControl() {
-    return this.formGroup.get('photot') as FormControl;
+    return this.formGroup.get('photo') as FormControl;
   }
 
   get cvControl() {
@@ -60,7 +60,7 @@ export class AddDoctorDialogComponent {
       event.target as HTMLInputElement | null;
     if (eventTarget?.files?.[0]) {
       this.photoFile = eventTarget.files[0];
-      this.photoControl.setValue(this.photoFile.name);
+      this.photoControl.patchValue(this.photoFile.name);
     }
   }
 
@@ -77,7 +77,7 @@ export class AddDoctorDialogComponent {
     const doctor: Doctor = {
       ...this.formGroup.value
     };
-    this.dialogRef.close(doctor);
+    this.dialogRef.close({...this.data,...doctor});
   }
   
 }

@@ -1,5 +1,5 @@
 <div class="dialog-container">
-    <h1 mat-dialog-title>Add Procedure</h1>
+    <h1 mat-dialog-title>Add Doctor</h1>
     <div mat-dialog-content [formGroup]="formGroup">
         <mat-form-field appearance="fill" class="full-width">
             <mat-label>Name</mat-label>
@@ -10,9 +10,9 @@
                 <mat-label>Photo</mat-label>
                 <input matInput placeholder="load new photo" [formControl]="photoControl">
             </mat-form-field>
-            <button mat-icon-button color="primary" (click)="fileInput.click()">
+            <button mat-icon-button color="primary" (click)="photoInput.click()">
                 <label for="file-upload" style="cursor: pointer;">
-                    <input #fileInput type="file" accept="image/*" (change)="setPhotoData($event)" hidden />
+                    <input #photoInput type="file" accept="image/*" (change)="setPhotoData($event)" hidden />
                     <mat-icon>attach_file</mat-icon>
                 </label>
             </button>
@@ -22,9 +22,9 @@
                 <mat-label>CV</mat-label>
                 <input matInput placeholder="load cv" [formControl]="cvControl">
             </mat-form-field>
-            <button mat-icon-button color="primary" (click)="fileInput.click()">
+            <button mat-icon-button color="primary" (click)="cvInput.click()">
                 <label for="file-upload" style="cursor: pointer;">
-                    <input #fileInput type="file" accept="image/*" (change)="setCvData($event)" hidden />
+                    <input #cvInput type="file" accept=".pdf, .doc, .docx" (change)="setCvData($event)" hidden />
                     <mat-icon>attach_file</mat-icon>
                 </label>
             </button>

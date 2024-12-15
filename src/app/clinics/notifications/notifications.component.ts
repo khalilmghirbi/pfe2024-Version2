@@ -49,9 +49,9 @@ export class NotificationsComponent {
       maxWidth: '600px', // Set maximum width
       data: contact
     };
-    this.dialog.open(AddContactDialogComponent, dialogConfig).afterClosed().subscribe((contract: Contact)=>{
-      if(contract){
-        this.contractService.updateContact(contact.id,contact).subscribe(()=>{
+    this.dialog.open(AddContactDialogComponent, dialogConfig).afterClosed().subscribe((updatedContract: Contact)=>{
+      if(updatedContract){
+        this.contractService.updateContact(updatedContract.id,updatedContract).subscribe(()=>{
           this.contacts$ = this.contractService.getContacts(this.hopitalId);
         });
       }
@@ -59,6 +59,8 @@ export class NotificationsComponent {
   }
 
   remove(contact: Contact){
-    this.contractService.deleteContact(contact.id);
+    this.contractService.deleteContact(contact.id).subscribe(() =>{
+      this.contacts$ = this.contractService.getContacts(this.hopitalId);
+    });
   }
 }

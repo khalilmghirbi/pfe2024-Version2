@@ -20,9 +20,9 @@ export class AddHotelDialogComponent {
   ) {
     this.formGroup = formbuilder.group({
       name: [data?.name ?? ''],
-      email: [data?.rating ?? ''],
-      simpleRoom: [data?.simpleRoom ?? ''],
-      doubleRoom: [data?.doubleRoom ?? ''],
+      rating: [data?.rating ?? 0],
+      simpleRoom: [data?.simpleRoom ?? 0],
+      doubleRoom: [data?.doubleRoom ?? 0],
       url: [data?.url ?? ''],
       location: [data?.location ?? '']
     });
@@ -32,8 +32,8 @@ export class AddHotelDialogComponent {
     return this.formGroup.get('name') as FormControl;
   }
 
-  get emailControl() {
-    return this.formGroup.get('email') as FormControl;
+  get ratingControl() {
+    return this.formGroup.get('rating') as FormControl;
   }
 
   get simpleRoomControl() {
@@ -56,6 +56,6 @@ export class AddHotelDialogComponent {
     const hotel: Hotel = {
       ...this.formGroup.value
     };
-    this.dialogRef.close(hotel);
+    this.dialogRef.close({...this.data,...hotel});
   }
 }

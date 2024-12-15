@@ -18,7 +18,7 @@ export class TreatmentService {
   }
 
   addTreatment(hopitalId: string,treatment: Treatment): Observable<Treatment> {
-    const url = `${this.baseUrl}/treatmentbyhopital/${hopitalId}`
+    const url = `${this.baseUrl}/createtreatment/${hopitalId}`
     return this.httpClientService.post<Treatment,any>(url, treatment);
   }
 }

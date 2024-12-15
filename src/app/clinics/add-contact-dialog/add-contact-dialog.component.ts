@@ -44,6 +44,6 @@ export class AddContactDialogComponent {
     const contact: Contact = {
       ...this.formGroup.value
     };
-    this.dialogRef.close(contact);
+    this.dialogRef.close({...this.data,...contact});
   }
 }

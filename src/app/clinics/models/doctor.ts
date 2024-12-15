@@ -8,5 +8,5 @@ export interface Doctor {
     cv?: string,
     status?: string,
     specialities: string[],
-    languages:string[]
+    languages: string[]
 }

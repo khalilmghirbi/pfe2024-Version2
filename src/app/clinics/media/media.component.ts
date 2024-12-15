@@ -7,6 +7,7 @@ import { FileUploadService } from 'src/app/shared/services/file-upload.service';
 import { HttpEventType } from '@angular/common/http';
 import { MediaService } from '../services/media.service';
 import { ClinicService } from 'src/app/shared/services/clinic.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-media',
@@ -47,8 +48,19 @@ export class MediaComponent implements OnDestroy {
     return this.formGroup.get('name') as FormControl;
   }
 
-  openDialog(): void {
-    console.log('Open dialog');
+  public decodePath(path: string): string {
+    const dbPath = decodeURIComponent(path);
+    if (this.isRelativeUrl(dbPath)) {
+      const fullPath = `${environment.apiUrl}/${dbPath}`;
+      return fullPath
+    }
+    return dbPath
+  }
+
+  isRelativeUrl(url: string) : boolean {
+    // Regular expression to check if the URL is a relative URL
+    const regex = /^(?![a-zA-Z][a-zA-Z\d+\-.]*:)/;
+    return regex.test(url);
   }
 
   setFileData(event: Event): void {
@@ -69,10 +81,12 @@ export class MediaComponent implements OnDestroy {
         }
       } else if (event.type === HttpEventType.Response) {
         this.displayProgress = false;
+        console.log(event)
         this.mediaService.addMedia(this.hopitalId, {
           desc: this.selectedFile.name,
-          path: event.body?.url,
+          path: encodeURIComponent(event.body?.path),
           type: this.selectedFile.type,
+          displayOrder: 0
         }).subscribe(() => {
           this.medias$ = this.mediaService.getMedias(this.hopitalId);
         })
@@ -88,5 +102,10 @@ export class MediaComponent implements OnDestroy {
     media.id && this.mediaService.deleteMedia(media.id).subscribe(() => {
       this.medias$ = this.mediaService.getMedias(this.hopitalId);
     });
+  }
+
+  formatNaming(fileName:string | undefined){
+    const nameWithoutExtension = fileName?.includes('.') ? fileName.slice(0, fileName.lastIndexOf('.')) : fileName;
+    return nameWithoutExtension;
   }
 }

@@ -42,22 +42,19 @@ export class ClinicComponent implements OnInit,AfterViewInit {
     this.subscription = this.route.params.subscribe(
       (param)=>{
         this.clinicService.selectClinic(+param['id']);
+        this.selectedIndex = 0;
       }
     )
   }
 
   ngAfterViewInit(): void {
     // Get the last segment from the route
-    this.selectedIndex = localStorage.getItem('indexId')
-      ? parseInt(localStorage.getItem('indexId') as string)
-      : 0;
     this.cdr.detectChanges();
   }
 
   onTabChange(event: any) {
-    const selectedTabIndex = event.index;
-    const selectedTitle = this.titles[selectedTabIndex];
-    localStorage.setItem('indexId', selectedTabIndex);
+    this.selectedIndex = event.index;
+    const selectedTitle = this.titles[this.selectedIndex];
     this.router.navigate([selectedTitle], { relativeTo: this.route});
   }
 }

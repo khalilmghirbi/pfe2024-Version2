@@ -13,7 +13,7 @@ export class ManagerService {
   baseUrl = environment.apiUrl;
 
   getCaseManagers(hopitalId: string): Observable<CaseManager[]> {
-    const url = `${this.baseUrl}/managerbyhopital/${hopitalId}`
+    const url = `${this.baseUrl}/managersbyhopital/${hopitalId}`
     return this.httpClientService.get<CaseManager[]>(url);
   }
 

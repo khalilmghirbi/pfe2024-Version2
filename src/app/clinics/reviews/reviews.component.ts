@@ -4,11 +4,12 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Subscription, switchMap } from 'rxjs';
+import { NEVER, Subscription, switchMap } from 'rxjs';
 import { ReviewStatus } from 'src/app/reviews/enum/review-status';
 import { Review } from 'src/app/reviews/models/review';
 import { ReviewReplyDialogComponent } from 'src/app/reviews/review-reply-dialog/review-reply-dialog.component';
 import { ReviewService } from 'src/app/reviews/services/review.service';
+import { ClinicService } from 'src/app/shared/services/clinic.service';
 
 @Component({
   selector: 'app-reviews',
@@ -39,23 +40,27 @@ export class ReviewsComponent {
   constructor(
     public reviewService: ReviewService,
     private dialog: MatDialog,
-    private activatedRoute: ActivatedRoute
-  ) {}
+    private clinicService: ClinicService
+  ) { }
   ngOnDestroy(): void {
     this.subscription?.unsubscribe();
   }
 
   ngOnInit() {
-    this.activatedRoute.params
-      .pipe(
-        switchMap((params: Params) => {
-          this.hopitalId = params['id'];
-          return this.reviewService.getReviewById(this.hopitalId);
-        })
-      )
-      .subscribe((data) => {
-        this.dataSource.data = data;
+    this.clinicService.activeClinics$.pipe(
+      switchMap((clinicId: number | null) => {
+        if (!clinicId) {
+          return NEVER;
+        }
+        this.hopitalId = clinicId.toString();
+        return this.reviewService.getReviewById(this.hopitalId);
+      })
+    ).subscribe((data) => {
+      this.dataSource.data = data.map((review: Review) => {
+        review.status = review.reply ? ReviewStatus.Answered : ReviewStatus.Pending
+        return review;
       });
+    });;
   }
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;

@@ -42,6 +42,6 @@ export class AddCaseManagerDialogComponent {
     const caseManger: CaseManager = {
       ...this.formGroup.value
     };
-    this.dialogRef.close(caseManger);
+    this.dialogRef.close({...this.data,...caseManger});
   }
 }

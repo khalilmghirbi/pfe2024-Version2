@@ -18,7 +18,7 @@ getStatusClass(appointement: Appointment): string {
       return 'grey-bg';
     case this.status.InProgress:
       return 'warn-bg';
-    case this.status.Closed:
+    case this.status.Confirmed:
       return 'success-bg';
     case this.status.Rejected:
       return 'critical-bg';
