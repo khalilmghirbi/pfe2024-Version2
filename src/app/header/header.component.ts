@@ -9,7 +9,7 @@ import { map, Observable, tap } from 'rxjs';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  title = 'Welcome Memorial Hospitol';
+  title = 'HEALTH CARE ALSO NEEDS TO BE GIVEN IMPORTANCE';
   @Output() toogleSideNav = new EventEmitter();
   isloggedIn: boolean = false;
   username$!: Observable<string>;
