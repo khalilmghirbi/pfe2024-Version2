@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Appointment, AppointmentStatus } from '../models/appointment';
 import { InqueryStatus } from '../enums/inquery-status';
 
@@ -11,6 +11,7 @@ export class AppointementComponent {
 status = AppointmentStatus;
 @Input() appointement!: Appointment;
 @Input() upComing!: boolean;
+@Output() statusChange = new EventEmitter<boolean>(false);
 
 getStatusClass(appointement: Appointment): string {
   switch (appointement.status) {
@@ -25,6 +26,10 @@ getStatusClass(appointement: Appointment): string {
     default:
       return '';
   }
+}
+
+accept(accept: boolean) {
+  this.statusChange.emit(accept);
 }
 
 }

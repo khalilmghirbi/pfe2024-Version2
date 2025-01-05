@@ -7,7 +7,15 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./filter-select-input.component.scss']
 })
 export class FilterSelectInputComponent {
-  @Input() control!: FormControl<string[]>;
+  @Input() control!: FormControl<string[] | string>;
   @Input() options!: string[] | null;
   @Input() label!: string;
+  @Input() multiple: boolean = true;
+
+
+  public get ControlValue(): string[] {
+    return Array.isArray(this.control.value) ? this.control.value : [this.control.value]
+  }
+
+
 }

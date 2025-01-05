@@ -1,9 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { InquiriesService } from '../services/inquiries.service';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, switchMap } from 'rxjs';
 import { Appointment, AppointmentStatus } from '../models/appointment';
-import { InqueryStatus } from '../enums/inquery-status';
 
 @Component({
   selector: 'app-appointement-dialog',
@@ -11,6 +10,7 @@ import { InqueryStatus } from '../enums/inquery-status';
   styleUrls: ['./appointement-dialog.component.scss'],
 })
 export class AppointementDialogComponent {
+  inquiryId!: string;
   appointmentsInProgress: BehaviorSubject<Appointment[]> = new BehaviorSubject<
     Appointment[]
   >([]);
@@ -22,9 +22,15 @@ export class AppointementDialogComponent {
     public dialogRef: MatDialogRef<AppointementDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: string
   ) {
-    this.inquiriesService.getAppointments(data).subscribe((appointments) => {
+    this.inquiryId = data;
+    this.fetchRdv();
+  }
+
+  fetchRdv(){
+    this.inquiriesService.getAppointments(this.inquiryId).subscribe((appointments) => {
+      const rdvs = this.GetUniqueAppointment(appointments)
       this.appointmentsInProgress.next(
-        appointments.filter(
+        rdvs.filter(
           (appointment) =>
             appointment.status === AppointmentStatus.InProgress ||
             appointment.status === AppointmentStatus.New
@@ -32,7 +38,7 @@ export class AppointementDialogComponent {
       );
 
       this.appointmentsPassed.next(
-        appointments.filter(
+        rdvs.filter(
           (appointment) =>
             appointment.status === AppointmentStatus.Confirmed ||
             appointment.status === AppointmentStatus.Rejected
@@ -57,5 +63,24 @@ export class AppointementDialogComponent {
     return this.appointmentsPassed.value;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
+
+  handleStatusChange(accept: boolean, appointement: Appointment) {
+    this.inquiriesService.UpdateRdv(appointement.id, {
+      ...appointement,
+      status: accept ? AppointmentStatus.Confirmed : AppointmentStatus.Rejected
+    }).subscribe(() =>{
+      this.fetchRdv()
+    })
+  }
+
+  GetUniqueAppointment(appointments: Appointment[]) : Appointment[] {
+    const map = new Map();
+    appointments.forEach(appointment => {
+      if (!map.has(appointment.id)) {
+        map.set(appointment.id, appointment);
+      }
+    });
+    return Array.from(map.values());
+  };
 }

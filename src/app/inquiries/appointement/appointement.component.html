@@ -14,8 +14,12 @@
         <p><strong>Payment:</strong> {{ appointement.payment | currency }}</p>
         <p><strong>Hotel:</strong> {{ appointement.hotel }}</p>
     </mat-card-content>
-    <!-- <mat-card-actions *ngIf="upComing" align="end">
-        <button mat-stroked-button color="warn">Decline</button>
-        <button mat-stroked-button color="primary">Confirm</button>
-    </mat-card-actions> -->
+    <mat-card-actions *ngIf="upComing" align="end">
+        <button mat-flat-button color="warn" (click)="accept(false)">
+            Cancel        
+        </button>
+        <button mat-flat-button color="primary" (click)="accept(true)">
+            Accept
+        </button>
+    </mat-card-actions>
 </mat-card>

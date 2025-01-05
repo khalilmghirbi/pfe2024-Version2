@@ -19,10 +19,8 @@
             <mat-label>Phone</mat-label>
             <input type="tel" matInput [formControl]="phoneControl">
         </mat-form-field>
-        <mat-form-field appearance="fill">
-            <mat-label>Hospital Name</mat-label>
-            <input matInput [formControl]="hospitalControl">
-        </mat-form-field>
+        <app-filter-select-input label="Hospital Name" [control]="hospitalControl"
+            [options]="clinics ?? []" [multiple]="false"></app-filter-select-input>
         <mat-form-field appearance="fill">
             <mat-label>Country Name</mat-label>
             <input matInput [formControl]="countryControl">
@@ -31,5 +29,6 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Cancel</button>
-    <button mat-button [mat-dialog-close]="true" cdkFocusInitial type="submit" color="primary" (click)="onSubmit()">Update</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial type="submit" color="primary"
+        (click)="onSubmit()">Update</button>
 </mat-dialog-actions>

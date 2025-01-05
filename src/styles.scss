@@ -66,6 +66,103 @@ body {
   text-transform: capitalize;
 }
 
+/* Color for InfRqsted status */
+.infRqsted-bg {
+  background-color: rgba(189, 189, 189, 0.38); /* Light grey */
+  color: #616161;
+  padding: 10px;
+  border: 1px solid #9e9e9e;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  text-transform: capitalize;
+}
+
+/* Color for Awaiting status */
+.awaiting-bg {
+  background-color: rgba(255, 152, 0, 0.38); /* Deep orange */
+  color: #ff6f00;
+  padding: 10px;
+  border: 1px solid #ff9800;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  text-transform: capitalize;
+}
+
+/* Color for Quoted status */
+.quoted-bg {
+  background-color: rgba(33, 150, 243, 0.38); /* Bright blue */
+  color: #1976d2;
+  padding: 10px;
+  border: 1px solid #2196f3;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  text-transform: capitalize;
+}
+
+/* Color for Confirmed status */
+.confirmed-bg {
+  background-color: rgba(76, 175, 80, 0.38); /* Green */
+  color: #388e3c;
+  padding: 10px;
+  border: 1px solid #4caf50;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  text-transform: capitalize;
+}
+
+/* Color for Answered status */
+.answered-bg {
+  background-color: rgba(0, 188, 212, 0.38); /* Teal */
+  color: #00acc1;
+  padding: 10px;
+  border: 1px solid #00bcd4;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  text-transform: capitalize;
+}
+
+/* Color for AnsweredAndRelaunched status */
+.answeredAndRelaunched-bg {
+  background-color: rgba(255, 87, 34, 0.38); /* Deep orange-red */
+  color: #d32f2f;
+  padding: 10px;
+  border: 1px solid #f44336;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  text-transform: capitalize;
+}
+
+/* Color for Cancelled status */
+.cancelled-bg {
+  background-color: rgba(211, 47, 47, 0.38); /* Dark red */
+  color: #c62828;
+  padding: 10px;
+  border: 1px solid #e53935;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  text-transform: capitalize;
+}
+
+/* Color for Notavailable status */
+.notavailable-bg {
+  background-color: rgba(158, 158, 158, 0.38); /* Light grey */
+  color: #616161;
+  padding: 10px;
+  border: 1px solid #9e9e9e;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  text-transform: capitalize;
+}
+
+
 .flex-column {
   display: flex;
   flex-direction: column;

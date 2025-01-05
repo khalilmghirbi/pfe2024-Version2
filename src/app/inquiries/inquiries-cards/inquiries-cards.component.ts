@@ -141,11 +141,10 @@ export class InquiriesCardsComponent {
         { title: 'Case Manager Name', value: inquiry.CaseManagerName },
         { title: 'Clinic', value: inquiry.Clinic },
         { title: 'Country', value: inquiry.Country },
-        { title: 'Country', value: inquiry.Country },
         { title: 'Age', value: inquiry.Age?.toString() ?? "" },
         { title: 'Sex', value: inquiry.Sex?.toString() ?? "" },
         { title: 'City', value: inquiry.DesiredCity?.toString() ?? "" },
-        { title: 'Smoker', value: inquiry.Smoker?.toString() ?? "" },
+        { title: 'Smoker', value: inquiry.Smoker ? "true" : "false" },
         { title: 'NativeLanguage', value: inquiry.NatibeLanguage?.toString() ?? "" },
         { title: 'Status', value: inquiry.Status, highlighted: true, Style: this.getStatusClass(inquiry) },
       ],
@@ -155,19 +154,23 @@ export class InquiriesCardsComponent {
   getStatusClass(inquiry: Inquiry): string {
     switch (inquiry.Status) {
       case this.status.InfRqsted:
-        return 'grey-bg';
+        return 'infRqsted-bg';  // Light grey for InfRqsted
       case this.status.Awaiting:
+        return 'awaiting-bg';   // Deep orange for Awaiting
       case this.status.Quoted:
-        return 'warn-bg';
+        return 'quoted-bg';     // Bright blue for Quoted
       case this.status.Confirmed:
+        return 'confirmed-bg';  // Green for Confirmed
       case this.status.Answered:
+        return 'answered-bg';   // Teal for Answered
       case this.status.AnsweredAndRelaunched:
-        return 'success-bg';
+        return 'answeredAndRelaunched-bg';  // Orange-red for AnsweredAndRelaunched
       case this.status.Cancelled:
+        return 'cancelled-bg';  // Dark red for Cancelled
       case this.status.Notavailable:
-        return 'critical-bg';
+        return 'notavailable-bg'; // Light grey for Notavailable
       default:
-        return '';
+        return 'infRqsted-bg';  // Default to light grey if no match
     }
   }
 }

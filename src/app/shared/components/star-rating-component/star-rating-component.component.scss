@@ -1,0 +1,17 @@
+.star-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .star-button {
+    padding: 0; /* Remove button padding */
+    margin: 0; /* Remove button margin */
+    min-width: 0; /* Override Angular Material min-width */
+    width: auto; /* Let the width adapt */
+  }
+  
+  .star-button mat-icon {
+    font-size: 24px; /* Adjust star size */
+    margin: 0; /* Remove default spacing */
+  }

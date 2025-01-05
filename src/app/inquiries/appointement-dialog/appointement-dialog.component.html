@@ -7,7 +7,7 @@
             <span class="empty-appointment" *ngIf="obj.inPrg?.length === 0; else showInPrgData">No upcoming Appointments</span>
             <ng-template #showInPrgData>
                 <app-appointement *ngFor="let appointment of obj.inPrg" [appointement]="appointment"
-                    [upComing]="true"></app-appointement>
+                    [upComing]="true" (statusChange)="handleStatusChange($event, appointment)"></app-appointement>
             </ng-template>
         </mat-tab>
         <mat-tab label="Passed">

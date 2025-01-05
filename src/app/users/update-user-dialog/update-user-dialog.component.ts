@@ -11,6 +11,9 @@ import {
 } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { ManagerService } from '../services/manager.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
+import { filter, map, Observable, switchMap } from 'rxjs';
+import { ClinicService } from 'src/app/shared/services/clinic.service';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class CustomErrorStateMatcher implements ErrorStateMatcher {
@@ -35,13 +38,20 @@ export class CustomErrorStateMatcher implements ErrorStateMatcher {
 export class UpdateUserDialogComponent {
   formGroup!: FormGroup;
   matcher!: CustomErrorStateMatcher;
+  clinics: string[] = [];
   constructor(
     public dialogRef: MatDialogRef<UpdateUserDialogComponent>,
     public managerService: ManagerService,
+    public clinicService: ClinicService,
+    public authService: AuthService,
     @Inject(MAT_DIALOG_DATA) public data: User,
     formBuilder: FormBuilder
   ) {
-    console.log(data.name);
+    this.ClinicNames().subscribe(
+      value => {
+        this.clinics = value
+      }
+    )
     this.formGroup = formBuilder.group({
       name: [data.name, Validators.required],
       email: [data.email, [Validators.email, Validators.required]],
@@ -50,6 +60,16 @@ export class UpdateUserDialogComponent {
       country: [data.country, Validators.required],
     });
     this.matcher = new CustomErrorStateMatcher();
+  }
+
+  ClinicNames() : Observable<string[]>{
+    return this.authService.userDetail$.pipe(
+      filter((userDetail) => !!userDetail),
+      switchMap((userDetail) => {
+        return this.clinicService.getClinics(userDetail?.id_user || 0);
+      }
+      ),
+      map(item => item.map(v => v.name)));
   }
 
   public get nameControl(): FormControl<string> {
@@ -73,6 +93,6 @@ export class UpdateUserDialogComponent {
   }
 
   onSubmit() {
-    this.managerService.updateManager(this.data.id, this.formGroup.value).subscribe();
+    this.managerService.updateManager(this.data.id, {... this.formGroup.value}).subscribe();
   }
 }

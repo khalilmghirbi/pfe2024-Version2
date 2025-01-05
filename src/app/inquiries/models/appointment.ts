@@ -1,4 +1,5 @@
 export interface Appointment {
+    id: string,
     hospital: string;
     date: Date;
     status: AppointmentStatus;

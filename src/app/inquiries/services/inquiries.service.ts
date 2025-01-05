@@ -132,7 +132,10 @@ export class InquiriesService {
     );
   }
 
-
+  UpdateRdv(id: string, rdv :Appointment): Observable<Appointment[]> {
+    const url = `${this.baseUrl}/rdv/${id}`
+    return this.httpClientService.put<Appointment,any>(url, rdv);
+  }
 
   private getRandomItem<T>(array: T[]): T {
     return array[Math.floor(Math.random() * array.length)];
